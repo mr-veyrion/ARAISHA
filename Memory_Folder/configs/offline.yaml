@@ -1,0 +1,69 @@
+llm:
+  model_path: ./models
+  backend: auto  # auto | intel | gguf
+  device: auto
+  max_new_tokens: 256
+  temperature: 0.3
+  top_p: 0.9
+
+embedder:
+  model_path: ./models/bge-m3
+  embedding_dims: 1024
+  max_length: 1024
+
+emotion_analyzer:
+  model_path: ./models/roberta-base-go_emotions
+  device: auto
+  max_length: 512
+  batch_size: 32
+  confidence_threshold: 0.1
+
+vector_store:
+  path: ./local_data/faiss
+  distance_strategy: cosine
+  index_type: HNSW
+  normalize: true
+  embedding_model_dims: 1024
+
+graph:
+  db_path: ./local_data/graph.db
+
+entity_index:
+  db_path: ./local_data/entity_index.db
+
+node_vectors:
+  path: ./local_data/node_vectors
+  collection_name: node_vectors
+  distance_strategy: cosine
+  index_type: HNSW
+  embedding_model_dims: 1024
+
+retrieval:
+  initial_top_k: 50
+  final_top_k: 10
+  merge_similarity_threshold: 0.82
+  update_similarity_threshold: 0.9
+  scoring:
+    w_similarity: 0.6
+    w_graph: 0.2
+    w_recency: 0.15
+    w_evidence: 0.05
+    w_lexical: 0.2
+  min_answer_score: 0.25
+  allow_no_answer: true
+  debug: false
+  traverse_debug: false
+
+reranker:
+  enabled: true
+  top_k: 10
+  max_passage_length: 96
+  # Graph-Enhanced BGE-M3 (no separate model needed)
+  graph_enhanced: true
+  advanced_fusion: true
+  debug_scores: false
+  # Graph enhancement settings
+  graph_context_depth: 3
+  entity_boost_factor: 0.15
+  confidence_boost_factor: 0.1
+  traversal_boost_factor: 0.12

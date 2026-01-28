@@ -1,0 +1,34 @@
+pip install torch==2.8.0+cpu 
+pip install sentence-transformers==5.1.0 
+pip install numpy==2.2.6 
+pip install safetensors==0.5.3 
+pip install huggingface-hub==0.34.3 
+pip install faiss-cpu==1.11.0.post1 
+pip install llama-cpp-python==0.3.16 
+pip install pydantic==2.11.7 
+pip install loguru==0.7.3 
+pip install pyvis==0.3.2
+# ipex-llm removed - using standard transformers
+pip install transformers==4.45.0 
+pip install "trl<0.12.0"
+pip install accelerate>=0.35.0
+pip install peft>=0.12.0
+pip install FlagEmbedding
+pip install psutil>=5.9.0
+pip install Jinja2==3.1.4
+# FastAPI and SocketIO dependencies for the server wrapper
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-socketio>=5.10.0
+python-multipart>=0.0.6
+
+# CORS support
+python-cors>=1.7.0
+
+# Additional utilities
+pydantic>=2.0.0
+typing-extensions>=4.8.0
+#pip install "transformers>=4.37.0,<4.42.3"         PHI-3/PHI-4
+#pip install transformers==4.37.0		    Qwen2/AceInstruct
+#pip install transformers==4.43.1 		    llama/AceInstruct
+#pip install accelerate==0.29.0             llama Ipex

@@ -1,0 +1,14 @@
+[
+  {
+    "id": 17,
+    "q": "Who works with a startup founder?",
+    "expected": [
+      "Riya",
+      "Karan"
+    ],
+    "got": [
+      "Aarav \u2014 FOLLOWS \u2014 Startup accelerators",
+      "Aarav \u2014 PREFERS \u2014 Remote work"
+    ]
+  }
+]

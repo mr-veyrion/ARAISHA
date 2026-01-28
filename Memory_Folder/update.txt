@@ -1,0 +1,86 @@
+
+### Updated TODO (no fallbacks anywhere)
+
+- Enforce strict init for style learning (no silent defaults); fail fast if required deps/paths absent
+- Semantic deduper must use embeddings + FAISS; error if not initialized
+- Persist dedup memory and FAISS every turn; load on startup; error if missing
+- Replace hardcoded subset sums with full-category aggregation
+- Zero thresholds in formatter; always display any nonzero category
+- Canonicalize tokens (case/diacritics/elongations/emoji variants) before learning
+- Add n-gram extraction (bigram/trigram) to phrase counts
+- EMA SessionProfile blending with LifetimeProfile for display
+- Diversify exemplars: freq × recency × distinctiveness; one-per-cluster
+- Remove try/except content-suppression in dynamic prompt path
+- Make CLI flags required: style embed model path, vector store dir; validate files/dirs at startup
+- Delete old logic: whitelists, strict cutoffs, placeholder semantic fallback, silent exception swallowing
+
+
+### Execution plan (files/classes/functions; delete old logic during edits)
+
+- LLM_Style/profile_index.py
+  - Class `StyleEmotionProfile`
+    - Edit `__post_init__`:
+      - Require explicit initialization via `initialize_deduplicator(embed_model_path: str, store_dir: str)`; raise if not called.
+      - Load `system_outputs/pattern_memory.json` and FAISS index; raise if missing.
+      - Delete: any conditional that quietly sets `_deduplicator=None`.
+    - Add `initialize_deduplicator(self, embed_model_path: str, store_dir: str)`:
+      - Construct `EmbeddingModel(embed_model_path)` and `FAISSStore(dim=embed.dim)`.
+      - Load FAISS index if exists; else raise and instruct to prebuild/seed.
+    - Edit `update_phrase_counts`:
+      - Always pass through deduper; persist dedup memory and FAISS store on success.
+      - Delete: branches doing simple aggregation when deduper missing.
+    - Add `update_ngrams(ngram_counts)` and include in dedup/persist.
+    - Add `apply_recency_decay(decay: float)`; maintain `self.session` substructure for EMA.
+    - Edit `get_style_blueprint_percentages`:
+      - Sum entire `lexical['fillers'|'hedges'|'slang'|'affective']` maps; threshold = 0.
+      - Delete: hardcoded word lists and >0.5% gating.
+    - Edit `format_for_llm_system_prompt_detailed`:
+      - Use percent>0 to mark active; exemplars from dedup clusters with diversity and ranking (freq×recency×distinctiveness).
+      - Include emoji categories and n‑grams sections.
+      - Delete: dependency on example presence to activate categories; any hardcoded exemplar sets.
+
+- LLM_Style/linguistic_analyzer.py
+  - Edit `extract_phrase_counts`:
+    - Add canonicalization pipeline (lowercase, diacritics removal, elongation collapse, emoji variation collapse).
+    - Add bigrams/trigrams to counts as `[ngram2] ...` / `[ngram3] ...` (frequency controlled).
+    - Add `[laughter]` and `[emoji_cat]` categories.
+  - Edit `analyze`:
+    - Apply same canonicalization before metrics so structure aligns with phrase counts.
+
+- LLM_Style/pattern_deduplicator.py
+  - Edit `__init__`:
+    - Require `embed_model` and `faiss_store`; raise if None.
+  - Edit `_cluster_semantic`:
+    - Implement embedding-based nearest-neighbor merging (cosine/IP via FAISS). No edit-distance fallback when embeddings present; raise if vector store unavailable.
+  - Add `canonicalize_token(word)` utility used across clustering.
+  - Keep `save_memory`/`load_memory`; ensure called by `StyleEmotionProfile`. No silent ignore if missing—raise.
+  - Delete: “fallback to edit distance” paths for semantic categories when embeddings available; delete placeholder comments.
+
+- LLM_Style/style_system.py
+  - Edit `build_system_prompt`:
+    - No try/except swallowing around dynamic section; if profile formatting fails, raise to caller.
+  - Delete: any hidden swallow of errors that would keep dynamic empty.
+
+- LLM_Style/prompt_inspector.py
+  - Enforce strict mode:
+    - If profile/dedup not initialized, show explicit error and exit.
+    - Add per-turn debug line: learned tokens/ngrams; clusters merged; top updated items.
+  - Delete: “fallback” minimal system prompt paths.
+
+- interactive_chat.py and scripts/inspect_system_prompt.py
+  - Add required CLI args:
+    - `--style-embed-model-path` (required)
+    - `--style-vector-store-dir` (required)
+  - Call `profile.initialize_deduplicator(...)` at startup. If files missing, exit with clear message.
+  - Persist after each turn: `save_profile()`, dedup `.save_memory()`, FAISS `.save()`.
+  - Delete: any try/except that hides initialization/update errors.
+
+- Persistence artifacts (must exist or build step required)
+  - `system_outputs/pattern_memory.json` (dedup clusters)
+  - `system_outputs/pattern_store.meta.json` + `.index` (or `.npy`) for FAISS
+  - Add a CLI subcommand to bootstrap (seed) if these files are missing; otherwise hard error.
+
+- Cleanups and deletions
+  - Remove hardcoded word whitelists and strict cutoff gating in `profile_index.py`.
+  - Remove edit-distance fallback for semantic categories when embeddings provided.
+  - Remove broad try/except blocks that return empty dynamic sections or zeroed updates.
