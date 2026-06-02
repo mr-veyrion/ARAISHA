@@ -42,6 +42,9 @@
 - [Benchmark Results](#-benchmark-results)
 - [Data Persistence & Operations](#-data-persistence--operations)
 - [Security & Privacy](#-security--privacy)
+- [Acknowledgments](#-acknowledgments)
+- [A Note on Code Style — Vibe Coded 🎨](#-a-note-on-code-style--vibe-coded-)
+- [Contributing](#-contributing)
 
 ---
 
@@ -1025,6 +1028,57 @@ cp -r local_data/ backup/local_data/
 
 ---
 
+## 🙏 Acknowledgments
+
+This project gratefully uses the following open-source models and technologies:
+
+- **[NVIDIA NeMo](https://github.com/NVIDIA/NeMo)** — The **Nemotron Speech Streaming EN 0.6B** model powers the real-time ASR (Automatic Speech Recognition) subsystem. Huge thanks to the NVIDIA NeMo team for making state-of-the-art streaming speech-to-text models available for local, on-device inference.
+- **[BAAI — Beijing Academy of Artificial Intelligence](https://huggingface.co/BAAI)** — The **BGE-M3** embedding model is the semantic backbone of the entire memory system. It handles text embedding (1024-dim), cross-encoder reranking, and context-aware fusion. Thank you to BAAI for building one of the most versatile multilingual embedding models available.
+- **[Hugging Face](https://huggingface.co)** — For the `transformers`, `sentence-transformers`, and `FlagEmbedding` ecosystems that make local model inference practical.
+- **[Meta AI](https://ai.meta.com)** — For the Llama model family that forms the foundation of many compatible GGUF models.
+- **[Facebook Research / FAISS](https://github.com/facebookresearch/faiss)** — For the blazing-fast vector similarity search that powers our memory retrieval.
+
+---
+
+## 🎨 A Note on Code Style — Vibe Coded
+
+> **This project is vibe coded.** 🎶
+
+What does that mean? It means the code was built iteratively, feature by feature, following the energy and flow of ideas rather than a strict upfront architecture plan. As a result:
+
+- **File connections and cross-module function calls are more numerous** than in a traditionally architected codebase. Components reach across module boundaries more freely.
+- **Logic breakdowns are more granular** — you'll find many smaller helper functions, inline conditionals, and defensive patterns rather than large, monolithic methods.
+- **The code works and works well**, but the structure has room for refactoring — deduplication, cleaner separation of concerns, more consistent error handling, and better interface abstractions.
+
+This is a **living, evolving project**, and the vibe-coded nature is part of its DNA. If you're the kind of developer who loves untangling complex systems and making them elegant — this is your playground.
+
+---
+
+## 🤝 Contributing
+
+Contributions are **warmly welcome** and genuinely appreciated! 🎉
+
+This project would benefit greatly from community help in areas like:
+
+- **🧹 Code Refactoring** — Cleaner module boundaries, reduced cross-file coupling, consistent patterns
+- **📝 Documentation** — More inline docstrings, API documentation, and usage examples
+- **🧪 Testing** — Expanding test coverage, adding integration tests, edge case handling
+- **⚡ Performance** — Optimizing graph traversal, FAISS index management, and memory footprint
+- **🎨 Interface** — Improving the web UI, adding new visualization features
+- **🐛 Bug Fixes** — If you find something broken, please open an issue or submit a PR!
+
+### How to Contribute
+
+1. **Fork** the repository
+2. **Create a feature branch** (`git checkout -b feature/your-improvement`)
+3. **Make your changes** and add tests where applicable
+4. **Submit a Pull Request** with a clear description of what you changed and why
+
+Whether it's a one-line typo fix or a full architectural refactor — every contribution makes this project better. Thank you! 🙌
+
+---
+
 <p align="center">
-  <em>Built with ❤️ for privacy-first, offline-first AI</em>
+  <em>Built with ❤️ for privacy-first, offline-first AI</em><br/>
+  <em>Open for contributions — let's build something great together.</em>
 </p>
