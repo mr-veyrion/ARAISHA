@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARAISHA — Intelligent Memory System</title>
+  <link rel="stylesheet" href="/static/css/style.css?v=7" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <script defer src="/static/js/script.js?v=7"></script>
+</head>
+
+<body>
+  <div id="app" class="app">
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
+    <div class="bg-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar glass">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">🧠</div>
+          <span class="logo-text">ARAISHA</span>
+        </div>
+        <div class="header-actions" style="display: flex; gap: 8px;">
+          <button id="themeBtn" class="icon-btn" title="Toggle theme">
+            <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button id="collapseBtn" class="icon-btn" title="Toggle sidebar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Model Selection Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+          <span>Model</span>
+        </div>
+        <div class="panel-content">
+          <div class="form-group">
+            <label for="backendSelect">Backend</label>
+            <select id="backendSelect" class="select">
+              <option value="gguf">GGUF (Local)</option>
+              <option value="transformers">Transformers (Local)</option>
+              <option value="api">API (OpenAI/NVIDIA/etc.)</option>
+              <option value="local_api">Local API (LM Studio/Ollama)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="modelPath">Model Path / Name</label>
+            <input id="modelPath" type="text" class="input" placeholder="Enter model path..." />
+          </div>
+          <div class="form-group" id="apiUrlGroup" style="display:none;">
+            <label for="apiUrl">API URL</label>
+            <input id="apiUrl" type="text" class="input" placeholder="https://api.openai.com/v1" />
+          </div>
+          <div class="form-group" id="apiKeyGroup" style="display:none;">
+            <label for="apiKey">API Key</label>
+            <input id="apiKey" type="password" class="input" placeholder="sk-..." />
+          </div>
+          <button id="applyModel" class="btn btn-primary btn-full">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12l5 5L20 7" />
+            </svg>
+            Apply Model
+          </button>
+        </div>
+      </div>
+
+      <!-- Emotions Panel -->
+      <div class="panel collapsible">
+        <button class="panel-header clickable">
+          <div class="panel-header-content">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
+            </svg>
+            <span>Emotional Profile</span>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <div class="panel-content collapse-content">
+          <div class="emotions-section">
+            <canvas id="emotionsChart"></canvas>
+            <div id="emotionsLegend" class="emotions-legend"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Style Patterns Panel -->
+      <div class="panel collapsible">
+        <button class="panel-header clickable">
+          <div class="panel-header-content">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+            <span>Style Patterns</span>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <div class="panel-content collapse-content">
+          <pre id="styleText" class="code-block"></pre>
+        </div>
+      </div>
+
+      <!-- Chat History Panel -->
+      <div class="panel collapsible">
+        <button class="panel-header clickable">
+          <div class="panel-header-content">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+            <span>Chat History</span>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <div class="panel-content collapse-content">
+          <button id="newChatBtn" class="btn btn-secondary btn-full">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            New Chat
+          </button>
+          <ul id="chatsList" class="chat-list"></ul>
+        </div>
+      </div>
+
+      <!-- Memory Commands Reference -->
+      <div class="panel compact">
+        <div class="panel-header">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          <span>Quick Commands</span>
+        </div>
+        <div class="panel-content">
+          <div class="command-grid">
+            <span class="command-tag">@store</span>
+            <span class="command-tag">@remember</span>
+            <span class="command-tag">@query</span>
+            <span class="command-tag">@path</span>
+            <span class="command-tag">@viz</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main glass">
+      <!-- Header -->
+      <header class="main-header">
+        <div class="header-left">
+          <h1 class="header-title">Memory Interface</h1>
+          <span class="header-subtitle">Hybrid AI Memory & Graph Reasoning</span>
+        </div>
+        <div class="header-right">
+          <div class="status-indicator online">
+            <span class="status-dot"></span>
+            <span class="status-text">Ready</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Messages Area -->
+      <section class="messages-container">
+        <div id="messages" class="messages">
+          <!-- Welcome Message -->
+          <div class="welcome-card">
+            <div class="welcome-icon">🧠</div>
+            <h2>Welcome to ARAISHA</h2>
+            <p>Your intelligent memory companion. Store memories, explore relationships, and let AI understand your
+              context.</p>
+            <div class="welcome-tips">
+              <div class="tip">
+                <span class="tip-icon">💾</span>
+                <span><strong>@store</strong> — Save a new memory</span>
+              </div>
+              <div class="tip">
+                <span class="tip-icon">🔍</span>
+                <span><strong>@remember</strong> — Search memories</span>
+              </div>
+              <div class="tip">
+                <span class="tip-icon">🗺️</span>
+                <span><strong>@viz</strong> — Visualize knowledge graph</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Input Area -->
+      <footer class="input-area">
+        <div id="triggerSuggestions" class="trigger-suggestions"></div>
+        <div class="input-wrapper">
+          <textarea id="input" class="chat-input" rows="1" placeholder="Type a message or use @ commands..."></textarea>
+          <button id="send" class="send-btn" title="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+            </svg>
+          </button>
+        </div>
+        <div class="input-footer">
+          <span class="input-hint">Press <kbd>Enter</kbd> to send, <kbd>Shift+Enter</kbd> for new line</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden">
+    <div class="toast-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 8v4M12 16h.01" />
+      </svg>
+    </div>
+    <div id="toastMsg" class="toast-message"></div>
+  </div>
+</body>
+
+</html>

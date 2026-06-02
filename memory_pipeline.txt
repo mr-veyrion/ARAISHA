@@ -1,0 +1,152 @@
+FULL PIPELINE ARCHITECTURE (OFFLINE, GRAPH-FIRST, VECTOR-NATIVE)
+
+1) COMPONENTS
+- LLM (local):
+  - GGUF via llama.cpp OR Intel ipex-llm (INT4). Backend chosen by config (auto/intel/gguf).
+- Embeddings (local):
+  - Jina embedding model (1024d) via SentenceTransformers.
+- Reranker (local):
+  - Qwen cross-encoder (Transformers), fallback to CrossEncoder if needed.
+- Graph store:
+  - SQLite-backed property graph with nodes, edges, and edge/node props. Unique edge constraint on (source, relationship, destination). Edge weights accumulate evidence over time.
+- Vector stores:
+  - Memory vectors: FAISS (HNSW/cosine by default). Persistent with metadata docstore.
+  - Node/path vectors: FAISS (separate collection) for entity names and short path fragments.
+- History store:
+  - SQLite history table for add/update/delete events and lineage.
+
+2) DATA FLOW: STORE ("@store")
+- Input: user text (+ minimal prior context) → preprocess pronouns and casing in extractor prompt.
+- LLM relation extractor (single call, isolated prompt):
+  - Output triplets in form: SOURCE - RELATION - DESTINATION (UPPERCASE). No predefined relation list.
+- Graph-first indexing:
+  - For each extracted triplet, upsert edge (weight += 1 on existing), set edge props (memory_id, temporal tags if found: time_window/date).
+  - Ensure nodes exist; assign labels, preserve timestamps; recompute connected components.
+  - Create node embeddings for entity names; create path-fragment vectors for each new relation (src rel dst).
+- Entity index:
+  - Extract entities from text (capitalized tokens + quoted phrase support) and map memory_id → entities.
+- Vector store (FAISS):
+  - Embed full memory text with Jina and add vector+payload (id, memory, metadata timestamps, user/agent/run IDs).
+- History:
+  - Record ADD event with timestamps.
+
+3) DATA FLOW: UPDATE ("@update" / update_by_query)
+- Re-embed merged/edited text; update FAISS; record UPDATE in history.
+- Remove prior graph edges for that memory_id; re-run relation extraction; re-index graph, node/path vectors.
+
+4) DATA FLOW: DELETE ("@delete" / delete_by_query)
+- Vector store soft-delete memory; record DELETE.
+- Remove all graph edges for the memory_id and prune path-fragment vectors linked to this memory.
+- Optional: reset/compact FAISS via rebuild pipeline.
+
+5) RETRIEVAL ("@remember")
+- Vector pre-recall:
+  - Embed query; search FAISS (initial_top_k). Gather candidates (id→payload, vector score).
+- Graph expansion:
+  - Extract entities from query; perform k-hop (k=2) around entities to gather related relations; add related memories via entity index.
+- Traverse router (for possessives/"who is"/temporal):
+  - If query has possessives or “who is” or temporal words, run traverse() (A*-style search) to find best endpoints/paths and boost their connected memories.
+- Temporal boost:
+  - If query contains time window/date, boost candidates whose edges have matching temporal props.
+- Hybrid rerank:
+  - Score = w_similarity·vector + w_graph·overlap + w_recency·flat_bonus + w_evidence·local_degree.
+  - Optional reranker (Qwen) rescoring of top_k pairs (query, memory) → blended final ordering.
+- Confidence gating (optional):
+  - If top score < threshold and allow_no_answer=true → return empty with note.
+- Return list of results with final scores + surface related relations for transparency.
+
+6) GRAPH TRAVERSE ("@remember" auto / traverse())
+- Parse seed entity (quoted > capitalized > user_id fallback) and possessive chain to a sequence of terms.
+- A* search with heuristics:
+  - Edge label compatibility, recency bonus (internal), accumulated weight, degree penalty.
+  - Caches neighbor expansions. Returns top endpoints with explicit path edges.
+- Results can be used to boost retrieval and to present transparent path evidence.
+
+7) QUERY DSL/PLANNER ("@query")
+- Mini-Cypher parser supports MATCH (a:Label {k:'v'})-[:REL*min..max]->(b:Label) WHERE prop_eq/SIMILAR.
+- Planner:
+  - Optional vector prefilter (SIMILAR) using node vectors or memory vectors.
+  - Graph filters by relationship types, labels, and node props, then limit.
+- Returns rows of edges.
+
+8) VISUALIZATION ("@viz")
+- PyVis export of entire graph or neighborhood of given entities.
+- Writes HTML to local_data/viz/graph_view_*.html.
+
+9) CONSISTENCY & MERGE
+- Edge weights increment on repeated upserts to reflect evidence.
+- Similarity-based merges (opt-in) can normalize entities/relationships.
+- Entity merges update FAISS text references (best-effort) and node vectors.
+
+10) PERSISTENCE & FILES
+- models/: LLM (gguf or intel HF), embeddings, reranker (Qwen).
+- local_data/:
+  - graph.db, history.db, faiss/{mem0.faiss, mem0.pkl}, node_vectors/, viz/.
+- configs/: offline.yaml (paths/backends/weights), logging.yaml.
+- scripts/: rebuild_index.py (compaction), export_graph.py (CSV dumps).
+- docs/: architecture.md, operations.md, api.md; tests/ for smoke coverage.
+
+11) OPERATIONS
+- Rebuild FAISS index: run scripts/rebuild_index.py or use @rebuild in CLI.
+- Export graph to CSV: scripts/export_graph.py.
+- Backup:
+  - Copy local_data/*.db and FAISS files; models/ are static.
+
+12) PERFORMANCE NOTES
+- FAISS HNSW for million-scale recall; IVF available via config.
+- L2 normalization for cosine similarity; docstore-based metadata filtering.
+- Caches for graph neighbors/degree during traversals; cleared on graph mutations.
+- Strictly offline; all models and storage local.
+
+13) SECURITY/PRIVACY
+- No external calls; all processing and storage on device.
+- Configurable paths; logs written to local_data/app.log (if enabled).
+
+14) CLI COMMANDS SUMMARY
+- @store, @remember, @update, @updateq, @delete, @query, @path, @viz, @merge, @rebuild.
+- --llm-backend: auto | intel | gguf; embeddings and reranker resolved locally.
+
+DIAGRAM-BASED PIPELINE
+
+```mermaid
+flowchart TD
+  subgraph Ingestion [Store / Update]
+    U["User / CLI (@store/@update)"] --> C["mem0/memory_system.py"]
+    C --> M["OfflineMemory"]
+    M --> E1["LLM Triplet Extractor (one-shot)"]
+    E1 --> G[("GraphStore (SQLite)")]
+    M --> EI[("EntityIndex (SQLite)")]
+    M --> NV[("Node/Path Vectors (FAISS)")]
+    M --> VS[("Memory Vectors (FAISS)")]
+    M --> H[("History (SQLite)")]
+  end
+
+  subgraph Retrieval [Recall / Rerank]
+    Q["Query (@remember)"] --> EMB["Jina Embed"]
+    EMB --> SRCH["FAISS Search (initial_top_k)"]
+    Q --> ENT["Entity Extract"] --> KHOP["Graph k-hop expand"]
+    Q --> TRV["A* Traverse (possessive/who-is/temporal)"]
+    SRCH --> CAN["Candidate Pool"]
+    KHOP --> CAN
+    TRV --> CAN
+    Q --> TEMP["Temporal Intent Detect"]
+    TEMP --> BOOST["Temporal Boost via edge props"]
+    CAN --> BOOST
+    CAN --> RR["Qwen Reranker (optional)"]
+    RR --> HYB["Hybrid Rerank (similarity+graph+recency+evidence)"]
+    BOOST --> HYB
+    HYB --> RES["Results + Relations"]
+  end
+
+  subgraph Ops [Operations]
+    RB["scripts/rebuild_index.py or @rebuild"] --> VS
+    EX["scripts/export_graph.py"] --> CSV["nodes.csv, edges.csv"]
+  end
+
+  classDef store fill:#eef,stroke:#88a;
+  classDef recall fill:#efe,stroke:#8a8;
+  classDef ops fill:#fee,stroke:#a88;
+  class U,C,M,E1,G,EI,NV,VS,H store;
+  class Q,EMB,SRCH,ENT,KHOP,TRV,CAN,TEMP,BOOST,RR,HYB,RES recall;
+  class RB,EX,CSV ops;
+```

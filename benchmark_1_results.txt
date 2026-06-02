@@ -1,0 +1,3081 @@
+BENCHMARK REPORT: Benchmark 1: Normal Conversation
+Retrieval Method: Graph-Only
+============================================================
+
+
+--- CATEGORY: Faithfulness ---
+Test #1: What color does Abhishek like?
+Expected: ['black', 'dark']
+Retrieved: USER --LIKES--> BLACK
+USER --PREFER--> DARK_THEMES
+My favorite color is black. I really love dark themes everywhere.
+RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in her designs.
+ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria loves painting landscapes. She uses...
+Verdict: ✅ PASS
+Reason: Contains direct mentions of black and dark themes matching Abhishek's preferences.
+----------------------------------------
+Test #2: Where does Riya live?
+Expected: ['Bangalore']
+Retrieved: RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --AVOID--> CLUTTERED_LAYOUTS
+RIYA --VALUE--> WHITESPACE
+Riya dislikes cluttered layouts. She values whitespace...
+Verdict: ❌ FAIL
+Reason: Retrieved memories do not mention Riya's residence or location.
+----------------------------------------
+Test #3: What does Karan know?
+Expected: ['SQL', 'Power BI']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --USE--> SQL
+Karan knows SQL very well. He uses it daily.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --USE--> POWER_BI
+Karan is proficient in Power B...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of SQL and Power BI skills.
+----------------------------------------
+Test #4: What does Meera study?
+Expected: ['Psychology']
+Retrieved: MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology a...
+Verdict: ✅ PASS
+Reason: Contains explicit mention that Meera studies Psychology.
+----------------------------------------
+Test #5: What team does Karan support?
+Expected: ['Manchester United']
+Retrieved: KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEEKEND
+Karan likes football. He plays every weekend.
+KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --USE--> POWER_BI
+Karan is proficient in Power BI for data visualization.
+KARAN --PREFERS...
+Verdict: ✅ PASS
+Reason: Karan supports Manchester United, directly answering the query.
+----------------------------------------
+Test #6: What is Abhishek's favorite programming language?
+Expected: ['Python']
+Retrieved: USER --FAVOR--> PYTHON
+USER --LIKES--> RUST
+My favorite programming language is Python but I also like Rust.
+USER --KNOW--> PYTHON
+USER --USE--> PYTHON
+I know Python very well. It's my main programming language.
+My favorite movie genre is science fiction.
+USER --USE--> LINUX
+USER --FAVOR--> UBUNTU
+U...
+Verdict: ✅ PASS
+Reason: Contains explicit statement that Python is favorite programming language.
+----------------------------------------
+Test #7: What operating system does Abhishek use?
+Expected: ['Linux']
+Retrieved: USER --USE--> LINUX
+USER --FAVOR--> UBUNTU
+USER --FAVOR--> ARCH
+I use Linux as my primary operating system. Ubuntu and Arch are my favorites.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem ove...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of Linux as Abhishek's operating system.
+----------------------------------------
+Test #8: What device does Riya use?
+Expected: ['iPhone']
+Retrieved: RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem over Android.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --L...
+Verdict: ✅ PASS
+Reason: Riya prefers iOS ecosystem, indicating iPhone use.
+----------------------------------------
+Test #9: Where does Aarav live?
+Expected: ['Mumbai']
+Retrieved: AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+TECHNOVA ...
+Verdict: ✅ PASS
+Reason: Contains explicit information that Aarav lives in Mumbai.
+----------------------------------------
+Test #10: What does Meera practice daily?
+Expected: ['mindfulness', 'meditation']
+Retrieved: MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma....
+Verdict: ✅ PASS
+Reason: Contains explicit mention of daily mindfulness meditation practice.
+----------------------------------------
+Test #11: What is my wife's name?
+Expected: ['Aria']
+Retrieved: USER --WIFE_OF--> ARIA
+ARIA --IS--> ARTIST
+My wife's name is Aria. She is an artist.
+USER --KNOW--> PYTHON
+USER --USE--> PYTHON
+I know Python very well. It's my main programming language.
+I sleep late, usually around 2 AM.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INT...
+Verdict: ✅ PASS
+Reason: Contains direct statement: "My wife's name is Aria."
+----------------------------------------
+Test #12: What does Aria love?
+Expected: ['painting', 'watercolors', 'landscapes']
+Retrieved: ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria loves painting landscapes. She uses watercolors.
+ARIA --FRIEND_OF--> RIYA
+ARIA --MET_AT--> ART_EXHIBITION
+RIYA --MET_AT--> ART_EXHIBITION
+Aria and Riya are friends. They met at an art exhibition.
+USER --WIFE_OF--> ARIA
+ARIA --IS--> AR...
+Verdict: ✅ PASS
+Reason: Contains all expected information: painting, watercolors, landscapes.
+----------------------------------------
+Test #13: What is Aarav's company called?
+Expected: ['TechNova']
+Retrieved: AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+AARAV --WORKS_A--> STARTUP_FOUNDER
+AARAV --BUILT--> COMPANY_FROM_SCRATCH
+Aarav works as a startup founder. He built his company from scratch.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aa...
+Verdict: ✅ PASS
+Reason: Aarav built TechNova, directly answering the query.
+----------------------------------------
+Test #14: Who is Meera's mentor?
+Expected: ['Sharma', 'Dr. Sharma']
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every ni...
+Verdict: ✅ PASS
+Reason: Meera's mentor is Dr. Sharma, directly stated in retrieved memories.
+----------------------------------------
+Test #15: What did Karan's brother Vikram do?
+Expected: ['finance', 'Singapore']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEE...
+Verdict: ✅ PASS
+Reason: Vikram lives in Singapore and moved there for work, matching finance and Singapore.
+----------------------------------------
+Test #16: What coffee do I drink?
+Expected: ['black', 'no sugar']
+Retrieved: USER --DRINK--> BLACK_COFFEE
+USER --PREFER--> NO_SUGAR_COFFEE
+I drink coffee every morning. Black coffee, no sugar.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+I sleep late, usually around 2 AM.
+I listen to lo-fi music while coding.
+USER --READ--> PHILOSOPHY
+US...
+Verdict: ✅ PASS
+Reason: Contains direct mention of black coffee and no sugar preference.
+----------------------------------------
+Test #17: What music do I listen to while coding?
+Expected: ['lo-fi']
+Retrieved: I listen to lo-fi music while coding.
+USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+USER --PREFER--> VS_CODE
+I prefer VSCode as my code editor.
+USER --FAVOR--> PYTHON
+USER --LIKES--> RUST
+My favorite program...
+Verdict: ✅ PASS
+Reason: Retrieved memory explicitly states listening to lo-fi music while coding.
+----------------------------------------
+Test #18: When do I usually sleep?
+Expected: ['2 AM', 'late']
+Retrieved: I sleep late, usually around 2 AM.
+I listen to lo-fi music while coding.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet...
+Verdict: ✅ PASS
+Reason: Retrieved memory states sleeping time as 2 AM, late.
+----------------------------------------
+Test #19: What editor do I use?
+Expected: ['VSCode']
+Retrieved: USER --PREFER--> VS_CODE
+I prefer VSCode as my code editor.
+USER --PREFERENCE--> MINIMAL_UI_DESIGNS
+USER --PREFERENCE--> CLEAN_INTERFACES
+I prefer minimal UI designs. Clean interfaces are the best.
+USER --PREFER--> DARK_MODE_INTERFACES
+I prefer dark mode interfaces in all applications.
+USER --USE-->...
+Verdict: ✅ PASS
+Reason: Retrieved memory explicitly states preference for VSCode as editor.
+----------------------------------------
+Test #20: What genre of movies do I like?
+Expected: ['science fiction', 'sci-fi']
+Retrieved: My favorite movie genre is science fiction.
+USER --LIKES--> BLACK
+USER --PREFER--> DARK_THEMES
+My favorite color is black. I really love dark themes everywhere.
+USER --FAVOR--> PYTHON
+USER --LIKES--> RUST
+My favorite programming language is Python but I also like Rust.
+USER --EXERCISES_THREE_TIMES_A...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of favorite movie genre as science fiction.
+----------------------------------------
+Test #21: What does Riya work as?
+Expected: ['UX designer']
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA --USE--> IPHONE_FOR_PHOTOGRAPHY_WORK
+Riya uses an iPhone for all her photography work.
+RIYA --WORK...
+Verdict: ✅ PASS
+Reason: Riya works as a UX designer at a tech startup.
+----------------------------------------
+Test #22: What is Aarav interested in?
+Expected: ['venture capital', 'funding']
+Retrieved: AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from t...
+Verdict: ✅ PASS
+Reason: Contains "invests in early-stage tech startups" related to venture capital and funding.
+----------------------------------------
+Test #23: What does Meera like doing?
+Expected: ['journaling', 'writes']
+Retrieved: MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+M...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of journaling and writing every night.
+----------------------------------------
+Test #24: What sport does Karan like?
+Expected: ['football']
+Retrieved: KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --PREFERS_WORKING_WITH--> STRUCTURED_DATASETS
+Karan pr...
+Verdict: ✅ PASS
+Reason: Karan likes football and plays it every weekend.
+----------------------------------------
+Test #25: What ecosystem does Riya prefer?
+Expected: ['iOS']
+Retrieved: RIYA --AVOID--> CLUTTERED_LAYOUTS
+RIYA --VALUE--> WHITESPACE
+Riya dislikes cluttered layouts. She values whitespace.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives...
+Verdict: ✅ PASS
+Reason: Riya uses an iPhone for photography work, indicating iOS ecosystem preference.
+----------------------------------------
+Test #26: What kind of UI do I prefer?
+Expected: ['minimal', 'clean']
+Retrieved: USER --PREFERENCE--> MINIMAL_UI_DESIGNS
+USER --PREFERENCE--> CLEAN_INTERFACES
+I prefer minimal UI designs. Clean interfaces are the best....
+Verdict: ✅ PASS
+Reason: Contains keywords 'minimal' and 'clean' as expected.
+----------------------------------------
+Test #27: What am I working on?
+Expected: ['After Human', 'digital immortality']
+Retrieved: USER --BELIEVES_IN--> OPEN_SOURCE_PHILOSOPHY
+USER --CONTRIBUTES_TO--> PROJECTS
+I believe in open-source philosophy. I contribute to many projects.
+Yesterday I had a meeting with the team about the project roadmap.
+USER --DISCUSSE--> ETHICS_OF_AI
+USER --WORKS_WITH--> COLLEAGUES
+I often discuss ethics...
+Verdict: ❌ FAIL
+Reason: No mention of "After Human" or "digital immortality" in retrieved memories.
+----------------------------------------
+Test #28: What kind of places do I prefer?
+Expected: ['quiet']
+Retrieved: USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+USER --PREFERENCE--> MINIMAL_UI_DESIGNS
+USER --PREFERENCE--> CLEAN_INTERFACES
+I prefer minimal UI designs. Clean interfaces are the best.
+USER --LIKES--> BLACK
+U...
+Verdict: ✅ PASS
+Reason: Contains explicit preference for quiet places to work.
+----------------------------------------
+Test #29: What does Karan avoid?
+Expected: ['manual data entry']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --PREFERS_WORKING_WITH--> STRUCTURED_DATASETS
+Karan prefers working with structured datasets.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --AVOID--> M...
+Verdict: ✅ PASS
+Reason: Karan avoids manual data entry, matching the expected information.
+----------------------------------------
+Test #30: What does Meera dislike?
+Expected: ['social media', 'overload']
+Retrieved: MEERA --AVOID--> SOCIAL_MEDIA_OVERLOAD
+MEERA --LIMIT--> SCREEN_TIME
+Meera dislikes social media overload. She limits her screen time.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUT...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of dislike for social media overload.
+----------------------------------------
+Test #31: Who raised funding from Sequoia?
+Expected: ['TechNova', 'Aarav']
+Retrieved: TECHNOVA --RAISED_FUNDING_FROM--> SEQUOIA_CAPITAL
+TechNova raised funding from Sequoia Capital....
+Verdict: ✅ PASS
+Reason: Contains expected information about TechNova raising funding from Sequoia.
+----------------------------------------
+Test #32: When did I graduate?
+Expected: ['2023']
+Retrieved: I graduated from university in 2023.
+USER --ATTENDED_UNIVERSITY_WITH--> KARAN
+USER --WAS_ROOMMATE_OF--> KARAN
+I attended university with Karan. We were roommates.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study Artificial Intelligence at university. It'...
+Verdict: ✅ PASS
+Reason: Retrieved memory states graduation year as 2023.
+----------------------------------------
+Test #33: When did Aarav found his company?
+Expected: ['2022']
+Retrieved: TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+AARAV --WORKS_A--> STARTUP_FOUNDER
+AARAV --BUILT--> COMPANY_FROM_SCRATCH
+Aarav works as a startup founder. He built his company from scratch.
+AARAV --BUILT--> TECHNOVA
+Aarav fou...
+Verdict: ✅ PASS
+Reason: Aarav founded TechNova in 2022 matches expected info.
+----------------------------------------
+Test #34: What am I learning recently?
+Expected: ['Rust']
+Retrieved: USER --LEARNED--> RUST PROGRAMMING
+Last month I started learning Rust programming.
+USER --READ--> PHILOSOPHY
+USER --READ--> TECHNOLOGY
+I read books on philosophy and technology.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study Artificial Intelligence at ...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of learning Rust programming.
+----------------------------------------
+Test #35: What kind of work does Aarav prefer?
+Expected: ['remote']
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARAV --LIVES_IN--...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of Aarav preferring remote work.
+----------------------------------------
+Test #36: What laptop does Aarav use?
+Expected: ['MacBook']
+Retrieved: TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. H...
+Verdict: ✅ PASS
+Reason: Aarav uses a MacBook, directly answering the query.
+----------------------------------------
+Test #37: What does Riya capture in photography?
+Expected: ['street', 'urban']
+Retrieved: RIYA --LIKES--> STREET_PHOTOGRAPHY
+RIYA --CAPTURE--> URBAN_LIFE_BEAUTIFULLY
+Riya loves street photography. She captures urban life beautifully.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA --AVOID--> CLUTTERED_LAYOUTS
+RIYA --VALUE--> WHITESPACE
+Riya dislikes cl...
+Verdict: ✅ PASS
+Reason: Contains expected information: street photography and urban life.
+----------------------------------------
+Test #38: What does Riya avoid in designs?
+Expected: ['dark color', 'palettes']
+Retrieved: RIYA --WORKS_A--> UX_DESIGNER
+USER --COLLABORATES_WITH--> RIYA
+USER --PARTNERED_WITH--> RIYA_FOR_DESIGN_PROJECTS
+I collaborate with Riya on design projects. We make a great team.
+RIYA --PRACTICE--> DESIGN_EMPIRY
+RIYA --PRIORITIZE--> USERS_FIRST_APPROACH
+Riya believes in design empathy. Users first.
+...
+Verdict: ❌ FAIL
+Reason: Retrieved memories mention pastel colors but not dark colors or palettes as avoided.
+----------------------------------------
+Test #39: What philosophy do I believe in?
+Expected: ['open-source']
+Retrieved: USER --BELIEVES_IN--> OPEN_SOURCE_PHILOSOPHY
+USER --CONTRIBUTES_TO--> PROJECTS
+I believe in open-source philosophy. I contribute to many projects.
+USER --READ--> PHILOSOPHY
+USER --READ--> TECHNOLOGY
+I read books on philosophy and technology.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FO...
+Verdict: ✅ PASS
+Reason: Contains explicit statement of belief in open-source philosophy.
+----------------------------------------
+Test #40: What does Riya value?
+Expected: ['whitespace', 'empathy']
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --PRACTICE--> DESIGN_EMPIRY
+RIYA --PRIORITIZE--> USERS_FIRST_APPROACH
+R...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of whitespace and empathy as values.
+----------------------------------------
+Test #41: Where did Vikram move to?
+Expected: ['Singapore']
+Retrieved: VIKRAM --LIVES_IN--> SINGAPORE
+VIKRAM --MOVED_TO--> SINGAPORE_FOR_WORK
+Vikram lives in Singapore. He moved there for work.
+KARAN --BROTHER_OF--> VIKRAM
+VIKRAM --WORKS_IN--> FINANCE
+Karan's brother is Vikram. He works in finance....
+Verdict: ✅ PASS
+Reason: Contains explicit information that Vikram moved to Singapore.
+----------------------------------------
+Test #42: What book did Dr. Sharma write?
+Expected: ['cognitive therapy']
+Retrieved: MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+Dr. Sharma wrote a book on cognitive therapy....
+Verdict: ✅ PASS
+Reason: Dr. Sharma wrote a book on cognitive therapy.
+----------------------------------------
+Test #43: Where did Aria and Riya meet?
+Expected: ['art exhibition']
+Retrieved: RIYA --WORKS_WITH--> AARAV
+AARAV --RUN--> STARTUP
+RIYA --WORKS_AT--> STARTUP
+Riya works with Aarav at his startup.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a te...
+Verdict: ❌ FAIL
+Reason: No mention of where Aria and Riya met.
+----------------------------------------
+Test #44: What datasets does Karan prefer?
+Expected: ['structured']
+Retrieved: KARAN --PREFERS_WORKING_WITH--> STRUCTURED_DATASETS
+Karan prefers working with structured datasets.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --USE--> POWER_BI
+Karan is proficient in Power BI for data visualization.
+KARAN --AVOID--> MANUAL_DATA_ENT...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of Karan's preference for structured datasets.
+----------------------------------------
+Test #45: What time did I complete the architecture?
+Expected: ['last week']
+Retrieved: USER --COMPLETED--> MEMORY_SYSTEM_ARCHITECTURE
+Last week I completed the memory system architecture.
+USER --UNDERSTAND--> SYSTEM_DESIGN
+USER --UNDERSTAND--> DISTRIBUTED_SYSTEMS_ARCHITECTURE
+I understand system design and distributed systems architecture.
+Yesterday I had a meeting with the team about...
+Verdict: ✅ PASS
+Reason: Last week I completed the memory system architecture.
+----------------------------------------
+Test #46: When did Riya join the startup?
+Expected: ['2024']
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --PRACTICE--> DESIGN_EMPIRY
+RIYA --PRIORITIZE--> USERS_FIRST_APPROACH
+Riya believes in design empathy. Users first.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is int...
+Verdict: ❌ FAIL
+Reason: No mention of Riya's joining date or 2024 in retrieved memories.
+----------------------------------------
+Test #47: What books do I read?
+Expected: ['philosophy', 'technology']
+Retrieved: USER --READ--> PHILOSOPHY
+USER --READ--> TECHNOLOGY
+I read books on philosophy and technology.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+USER --STUDIE...
+Verdict: ✅ PASS
+Reason: Contains explicit mentions of reading philosophy and technology.
+----------------------------------------
+Test #48: How often do I exercise?
+Expected: ['three times', 'week']
+Retrieved: USER --EXERCISES_THREE_TIMES_A_WEEK--> RUNNING
+USER --FAVORITE_ACTIVITY--> RUNNING
+I exercise three times a week. Running is my favorite.
+I sleep late, usually around 2 AM.
+MEERA --PRACTICE--> MINDFULNESS_MEDITATION_DAILY
+Meera practices mindfulness meditation daily.
+USER --DISCUSSE--> ETHICS_OF_AI
+...
+Verdict: ✅ PASS
+Reason: Contains explicit statement of exercising three times a week.
+----------------------------------------
+Test #49: What kind of running do I do?
+Expected: ['running', 'exercise']
+Retrieved: USER --EXERCISES_THREE_TIMES_A_WEEK--> RUNNING
+USER --FAVORITE_ACTIVITY--> RUNNING
+I exercise three times a week. Running is my favorite.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study Artificial Intelligence at university. It's my passion.
+My favorite...
+Verdict: ✅ PASS
+Reason: Contains running and exercise as expected.
+----------------------------------------
+Test #50: What does TechNova focus on?
+Expected: ['AI solutions']
+Retrieved: TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+AARAV --BUILT--> TECHNOVA
+Aarav founded TechNova in 2022.
+TECHNOVA --RAISED_FUNDING_FROM--> SEQUOIA_CAPITAL
+TechNova raised funding from Sequoia Capital....
+Verdict: ✅ PASS
+Reason: Contains expected information about TechNova's focus on AI solutions.
+----------------------------------------
+
+--- CATEGORY: Retrieval Accuracy ---
+Test #1: Who likes black color?
+Expected: ['Abhishek', 'I', 'my']
+Retrieved: USER --LIKES--> BLACK
+USER --PREFER--> DARK_THEMES
+My favorite color is black. I really love dark themes everywhere.
+RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in her designs.
+USER --PREFER--> DARK_MODE_INTERFACES
+I prefer dark mode interfaces in all applications.
+USER --DRINK...
+Verdict: ✅ PASS
+Reason: Contains direct statements about liking black and dark themes.
+----------------------------------------
+Test #2: Who lives in Bangalore?
+Expected: ['Riya']
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work....
+Verdict: ✅ PASS
+Reason: Riya lives in Bangalore matches expected information.
+----------------------------------------
+Test #3: Who prefers quiet environments?
+Expected: ['Abhishek', 'Meera', 'I']
+Retrieved: USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+USER --PREFER--> DARK_MODE_INTERFACES
+I prefer dark mode interfaces in all app...
+Verdict: ✅ PASS
+Reason: Contains explicit preferences for quiet environments by Abhishek and Meera.
+----------------------------------------
+Test #4: Who dislikes clutter?
+Expected: ['Riya']
+Retrieved: RIYA --AVOID--> CLUTTERED_LAYOUTS
+RIYA --VALUE--> WHITESPACE
+Riya dislikes cluttered layouts. She values whitespace.
+USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+KARAN --AVOID--> MANUAL_DATA_ENTRY
+KARAN --A...
+Verdict: ❌ FAIL
+Reason: Expected person Riya not confirmed; memories discuss preferences but not dislike of clutter directly.
+----------------------------------------
+Test #5: Who knows Python?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --KNOW--> PYTHON
+USER --USE--> PYTHON
+I know Python very well. It's my main programming language.
+USER --FAVOR--> PYTHON
+USER --LIKES--> RUST
+My favorite programming language is Python but I also like Rust....
+Verdict: ✅ PASS
+Reason: Contains "I know Python" and "favorite programming language is Python".
+----------------------------------------
+Test #6: Who uses Apple devices?
+Expected: ['Riya', 'iPhone']
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+RIYA --USE--> IPHONE_FOR_PHOTOGRAPHY_WORK
+Riya uses an iPhone for all her photography work.
+RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem over Android.
+USER --USE--> LINUX
+USER --FAVOR--> UBU...
+Verdict: ✅ PASS
+Reason: Riya uses iPhone for photography work as expected.
+----------------------------------------
+Test #7: Who works as a designer?
+Expected: ['Riya']
+Retrieved: RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA --WORKS_A--> UX_DESIGNER
+USER --COLLABORATES_WITH--> RIYA
+USER --PARTNERED_WITH--> RIYA_FOR_DESIGN_PROJECTS
+I collaborate with Riya on design projects. We make a great team.
+RIYA --PRACTICE--> DESIGN_EMPIRY
+RIYA --PR...
+Verdict: ✅ PASS
+Reason: Riya is identified as working in design-related roles.
+----------------------------------------
+Test #8: Who is interested in AI?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --DISCUSSE--> ETHICS_OF_AI
+USER --WORKS_WITH--> COLLEAGUES
+I often discuss ethics of AI with my colleagues.
+TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions....
+Verdict: ✅ PASS
+Reason: Abhishek (I) discusses ethics of AI, showing interest in AI.
+----------------------------------------
+Test #9: Who practices mindfulness?
+Expected: ['Meera']
+Retrieved: MEERA --PRACTICE--> MINDFULNESS_MEDITATION_DAILY
+Meera practices mindfulness meditation daily.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+MEERA --STUDI...
+Verdict: ✅ PASS
+Reason: Meera is explicitly mentioned as practicing mindfulness meditation daily.
+----------------------------------------
+Test #10: Who invests in startups?
+Expected: ['Aarav']
+Retrieved: AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --FOLLOW--> Y_COMBINATOR
+Aarav follows several startup accelerators like Y C...
+Verdict: ✅ PASS
+Reason: Aarav is explicitly mentioned as investing in early-stage tech startups.
+----------------------------------------
+Test #11: Who uses Linux?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --USE--> LINUX
+USER --FAVOR--> UBUNTU
+USER --FAVOR--> ARCH
+I use Linux as my primary operating system. Ubuntu and Arch are my favorites....
+Verdict: ✅ PASS
+Reason: Contains "I use Linux" and mentions Abhishek's usage.
+----------------------------------------
+Test #12: Who prefers dark mode?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --PREFER--> DARK_MODE_INTERFACES
+I prefer dark mode interfaces in all applications.
+USER --LIKES--> BLACK
+USER --PREFER--> DARK_THEMES
+My favorite color is black. I really love dark themes everywhere.
+USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud ...
+Verdict: ✅ PASS
+Reason: Contains multiple references to preferring dark modes and themes.
+----------------------------------------
+Test #13: Who plays football?
+Expected: ['Karan']
+Retrieved: KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEEKEND
+Karan likes football. He plays every weekend.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+USER --EXERCISES_THREE_TIMES_A_WEEK--> RUNN...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of Karan playing football.
+----------------------------------------
+Test #14: Who studies psychology?
+Expected: ['Meera']
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study Arti...
+Verdict: ✅ PASS
+Reason: Meera studies psychology as explicitly stated in multiple memories.
+----------------------------------------
+Test #15: Who uses a MacBook?
+Expected: ['Aarav']
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work....
+Verdict: ✅ PASS
+Reason: Contains expected information about Aarav using a MacBook.
+----------------------------------------
+Test #16: Who attends networking events?
+Expected: ['Aarav']
+Retrieved: AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+USER --DISCUSSE--> ETHICS_OF_AI
+USER --WORKS_WITH--> COLLEAGUES
+I often discuss ethics of AI with...
+Verdict: ✅ PASS
+Reason: Aarav attends networking events as explicitly stated.
+----------------------------------------
+Test #17: Who likes street photography?
+Expected: ['Riya']
+Retrieved: RIYA --LIKES--> STREET_PHOTOGRAPHY
+RIYA --CAPTURE--> URBAN_LIFE_BEAUTIFULLY
+Riya loves street photography. She captures urban life beautifully.
+RIYA --USE--> IPHONE_FOR_PHOTOGRAPHY_WORK
+Riya uses an iPhone for all her photography work.
+ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Ari...
+Verdict: ✅ PASS
+Reason: Riya likes street photography, matching the expected information.
+----------------------------------------
+Test #18: Who lives in Delhi?
+Expected: ['Karan']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there....
+Verdict: ✅ PASS
+Reason: Contains explicit information that Karan lives in Delhi.
+----------------------------------------
+Test #19: Who lives in Pune?
+Expected: ['Meera']
+Retrieved: MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there....
+Verdict: ✅ PASS
+Reason: Meera lives in Pune matches expected information.
+----------------------------------------
+Test #20: Who lives in Mumbai?
+Expected: ['Aarav']
+Retrieved: AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there....
+Verdict: ✅ PASS
+Reason: Aarav lives in Mumbai matches expected information.
+----------------------------------------
+Test #21: Who supports Manchester United?
+Expected: ['Karan']
+Retrieved: KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood....
+Verdict: ✅ PASS
+Reason: Karan supports Manchester United, matching the expected information.
+----------------------------------------
+Test #22: Who prefers iOS?
+Expected: ['Riya']
+Retrieved: RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem over Android.
+USER --PREFERENCE--> MINIMAL_UI_DESIGNS
+USER --PREFERENCE--> CLEAN_INTERFACES
+I prefer minimal UI designs. Clean interfaces are the best.
+USER --PREFER--> DARK_MODE_INTERFACES
+I prefer dark mod...
+Verdict: ✅ PASS
+Reason: Riya is explicitly stated to prefer iOS ecosystem.
+----------------------------------------
+Test #23: Who drinks black coffee?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --DRINK--> BLACK_COFFEE
+USER --PREFER--> NO_SUGAR_COFFEE
+I drink coffee every morning. Black coffee, no sugar.
+USER --LIKES--> BLACK
+USER --PREFER--> DARK_THEMES
+My favorite color is black. I really love dark themes everywhere.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet café...
+Verdict: ✅ PASS
+Reason: Contains explicit statement that "I drink coffee every morning. Black coffee, no sugar."
+----------------------------------------
+Test #24: Who sleeps late?
+Expected: ['Abhishek', 'I']
+Retrieved: I sleep late, usually around 2 AM.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+I listen to lo-fi music while coding.
+USER --PREFER--> DARK_MODE_INTERFACES
+I prefer dark mode interfaces in all applications.
+MEERA --PREFER--> QUIET_CAFES_FOR...
+Verdict: ✅ PASS
+Reason: "I sleep late" matches the query about Abhishek sleeping late.
+----------------------------------------
+Test #25: Who listens to lo-fi?
+Expected: ['Abhishek', 'I']
+Retrieved: I listen to lo-fi music while coding.
+USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+USER --PREFER--> DARK_MODE_INTERFACES
+I ...
+Verdict: ✅ PASS
+Reason: "I listen to lo-fi music while coding" matches Abhishek's listening habit.
+----------------------------------------
+Test #26: Who founded a company?
+Expected: ['Aarav']
+Retrieved: AARAV --WORKS_A--> STARTUP_FOUNDER
+AARAV --BUILT--> COMPANY_FROM_SCRATCH
+Aarav works as a startup founder. He built his company from scratch.
+TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+AARAV --INTERESTED_IN--> VENTURE_CA...
+Verdict: ✅ PASS
+Reason: Aarav founded TechNova, directly answering who founded a company.
+----------------------------------------
+Test #27: Who is married to an artist?
+Expected: ['Abhishek', 'I', 'Aria']
+Retrieved: USER --WIFE_OF--> ARIA
+ARIA --IS--> ARTIST
+My wife's name is Aria. She is an artist.
+ARIA --FRIEND_OF--> RIYA
+ARIA --MET_AT--> ART_EXHIBITION
+RIYA --MET_AT--> ART_EXHIBITION
+Aria and Riya are friends. They met at an art exhibition.
+ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria lo...
+Verdict: ✅ PASS
+Reason: Abhishek is married to Aria, who is an artist.
+----------------------------------------
+Test #28: Who avoids vendor lock-in?
+Expected: ['Abhishek', 'I']
+Retrieved: I avoid vendor lock-in when choosing technologies.
+RIYA --AVOID--> DARK_COLOR_PALETTES_IN_DESIGNS
+Riya avoids using dark color palettes in her designs.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+I listen to lo-fi music while coding.
+R...
+Verdict: ✅ PASS
+Reason: "I avoid vendor lock-in" matches Abhishek's action.
+----------------------------------------
+Test #29: Who contributes to open source?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --BELIEVES_IN--> OPEN_SOURCE_PHILOSOPHY
+USER --CONTRIBUTES_TO--> PROJECTS
+I believe in open-source philosophy. I contribute to many projects.
+I listen to lo-fi music while coding.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital an...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of contributing to projects and open-source belief.
+----------------------------------------
+Test #30: Who prefers remote work?
+Expected: ['Aarav']
+Retrieved: AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+USER --PREFER--> DARK_MODE_INTERFACES
+I prefer dark ...
+Verdict: ❌ FAIL
+Reason: Expected person Aarav is mentioned but no direct match for remote work preference.
+----------------------------------------
+Test #31: Who journals every night?
+Expected: ['Meera']
+Retrieved: MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+I sleep late, usually around 2 AM.
+KARAN --USE--> SQL
+Karan knows SQL very well. He uses it daily.
+MEERA --PRACTICE--> MINDFULNESS_MEDITATION_DAILY
+Meera practices mindfulness meditation daily.
+U...
+Verdict: ✅ PASS
+Reason: Meera is identified as journaling every night in retrieved memories.
+----------------------------------------
+Test #32: Who likes watercolors?
+Expected: ['Aria']
+Retrieved: ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria loves painting landscapes. She uses watercolors.
+USER --LIKES--> BLACK
+USER --PREFER--> DARK_THEMES
+My favorite color is black. I really love dark themes everywhere.
+RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in...
+Verdict: ✅ PASS
+Reason: Aria likes watercolors as per retrieved memories.
+----------------------------------------
+Test #33: Who works in finance?
+Expected: ['Vikram']
+Retrieved: KARAN --BROTHER_OF--> VIKRAM
+VIKRAM --WORKS_IN--> FINANCE
+Karan's brother is Vikram. He works in finance.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --CONSULT--> AARAV
+AARAV --PROVIDES_ADVICE_ON--> BUSINESS_ANALYTICS
+Karan consults Aarav on business...
+Verdict: ✅ PASS
+Reason: Vikram works in finance, directly answering the query.
+----------------------------------------
+Test #34: Who is a psychologist?
+Expected: ['Sharma', 'Dr']
+Retrieved: MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+...
+Verdict: ✅ PASS
+Reason: Dr. Sharma is identified as a renowned psychologist in the retrieved memories.
+----------------------------------------
+Test #35: Who automates data work?
+Expected: ['Karan']
+Retrieved: KARAN --AVOID--> MANUAL_DATA_ENTRY
+KARAN --AUTOMATE--> EVERYTHING
+Karan dislikes manual data entry. He automates everything.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --PREFERS_WORKING_WITH--> STRUCTURED_DATASETS
+Karan prefers working with structur...
+Verdict: ✅ PASS
+Reason: Karan automates data work as stated in multiple retrieved memories.
+----------------------------------------
+Test #36: Who uses Power BI?
+Expected: ['Karan']
+Retrieved: KARAN --USE--> POWER_BI
+Karan is proficient in Power BI for data visualization....
+Verdict: ✅ PASS
+Reason: Karan is explicitly linked to Power BI in the retrieved memories.
+----------------------------------------
+Test #37: Who values whitespace in design?
+Expected: ['Riya']
+Retrieved: RIYA --AVOID--> CLUTTERED_LAYOUTS
+RIYA --VALUE--> WHITESPACE
+Riya dislikes cluttered layouts. She values whitespace.
+RIYA --PRACTICE--> DESIGN_EMPIRY
+RIYA --PRIORITIZE--> USERS_FIRST_APPROACH
+Riya believes in design empathy. Users first.
+USER --PREFERENCE--> MINIMAL_UI_DESIGNS
+USER --PREFERENCE--> C...
+Verdict: ✅ PASS
+Reason: Riya values whitespace as explicitly stated in multiple retrieved memories.
+----------------------------------------
+Test #38: Who reads research papers?
+Expected: ['Meera']
+Retrieved: MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+USER --READ--> PHILOSOPHY
+USER --READ--> TECHNOLOGY
+I read books on philosophy and technology.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study A...
+Verdict: ✅ PASS
+Reason: Meera is explicitly mentioned as reading research papers.
+----------------------------------------
+Test #39: Who follows Y Combinator?
+Expected: ['Aarav']
+Retrieved: AARAV --FOLLOW--> Y_COMBINATOR
+Aarav follows several startup accelerators like Y Combinator....
+Verdict: ✅ PASS
+Reason: Contains explicit mention of Aarav following Y Combinator.
+----------------------------------------
+Test #40: Who prefers structured data?
+Expected: ['Karan']
+Retrieved: KARAN --PREFERS_WORKING_WITH--> STRUCTURED_DATASETS
+Karan prefers working with structured datasets.
+KARAN --AVOID--> MANUAL_DATA_ENTRY
+KARAN --AUTOMATE--> EVERYTHING
+Karan dislikes manual data entry. He automates everything.
+USER --PREFERENCE--> MINIMAL_UI_DESIGNS
+USER --PREFERENCE--> CLEAN_INTERFAC...
+Verdict: ✅ PASS
+Reason: Karan is explicitly identified as preferring structured datasets.
+----------------------------------------
+Test #41: Who uses VSCode?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --PREFER--> VS_CODE
+I prefer VSCode as my code editor....
+Verdict: ✅ PASS
+Reason: Contains "I prefer VSCode" matching Abhishek's usage.
+----------------------------------------
+Test #42: Who exercises regularly?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --EXERCISES_THREE_TIMES_A_WEEK--> RUNNING
+USER --FAVORITE_ACTIVITY--> RUNNING
+I exercise three times a week. Running is my favorite.
+MEERA --PRACTICE--> MINDFULNESS_MEDITATION_DAILY
+Meera practices mindfulness meditation daily.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. ...
+Verdict: ✅ PASS
+Reason: Contains "I exercise three times a week" and "Running is my favorite," matching Abhishek's regular exercise.
+----------------------------------------
+Test #43: Who likes running?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --EXERCISES_THREE_TIMES_A_WEEK--> RUNNING
+USER --FAVORITE_ACTIVITY--> RUNNING
+I exercise three times a week. Running is my favorite.
+USER --FAVOR--> PYTHON
+USER --LIKES--> RUST
+My favorite programming language is Python but I also like Rust.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NI...
+Verdict: ✅ PASS
+Reason: Contains direct mention of running as favorite activity and exercise routine.
+----------------------------------------
+Test #44: Who reads philosophy books?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --READ--> PHILOSOPHY
+USER --READ--> TECHNOLOGY
+I read books on philosophy and technology.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+USER --BELIEVES_IN--> OPEN_SOURCE_PHILOSOPHY
+USER --CONTRIBUTES_TO--> PROJECTS
+I believe in open...
+Verdict: ✅ PASS
+Reason: Contains "I read books on philosophy" which matches Abhishek's reading activity.
+----------------------------------------
+Test #45: Who likes sci-fi movies?
+Expected: ['Abhishek', 'I']
+Retrieved: My favorite movie genre is science fiction.
+USER --FAVOR--> PYTHON
+USER --LIKES--> RUST
+My favorite programming language is Python but I also like Rust.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study Artificial Intelligence at university. It's my passi...
+Verdict: ✅ PASS
+Reason: Contains "I" and mentions favorite movie genre as science fiction.
+----------------------------------------
+Test #46: Who dislikes social media?
+Expected: ['Meera']
+Retrieved: MEERA --AVOID--> SOCIAL_MEDIA_OVERLOAD
+MEERA --LIMIT--> SCREEN_TIME
+Meera dislikes social media overload. She limits her screen time.
+USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+RIYA --AVOID--> CLUTTERED_L...
+Verdict: ✅ PASS
+Reason: Meera dislikes social media overload and limits screen time.
+----------------------------------------
+Test #47: Who limits screen time?
+Expected: ['Meera']
+Retrieved: MEERA --AVOID--> SOCIAL_MEDIA_OVERLOAD
+MEERA --LIMIT--> SCREEN_TIME
+Meera dislikes social media overload. She limits her screen time.
+I listen to lo-fi music while coding.
+I sleep late, usually around 2 AM.
+RIYA --AVOID--> CLUTTERED_LAYOUTS
+RIYA --VALUE--> WHITESPACE
+Riya dislikes cluttered layouts....
+Verdict: ✅ PASS
+Reason: Meera limits screen time, matching the expected information.
+----------------------------------------
+Test #48: Who likes pastel colors?
+Expected: ['Riya']
+Retrieved: RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in her designs.
+USER --LIKES--> BLACK
+USER --PREFER--> DARK_THEMES
+My favorite color is black. I really love dark themes everywhere.
+ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria loves painting landscapes. She uses...
+Verdict: ✅ PASS
+Reason: Riya is explicitly mentioned as liking pastel colors in designs.
+----------------------------------------
+Test #49: Who understands system design?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --UNDERSTAND--> SYSTEM_DESIGN
+USER --UNDERSTAND--> DISTRIBUTED_SYSTEMS_ARCHITECTURE
+I understand system design and distributed systems architecture.
+RIYA --PRACTICE--> DESIGN_EMPIRY
+RIYA --PRIORITIZE--> USERS_FIRST_APPROACH
+Riya believes in design empathy. Users first.
+RIYA --STUDIE--> HUMAN_CE...
+Verdict: ✅ PASS
+Reason: "I understand system design" matches the expected information.
+----------------------------------------
+Test #50: Who is learning Rust?
+Expected: ['Abhishek', 'I']
+Retrieved: USER --LEARNED--> RUST PROGRAMMING
+Last month I started learning Rust programming.
+USER --FAVOR--> PYTHON
+USER --LIKES--> RUST
+My favorite programming language is Python but I also like Rust....
+Verdict: ✅ PASS
+Reason: Contains "I started learning Rust" matching Abhishek's learning activity.
+----------------------------------------
+
+--- CATEGORY: Multi-Hop Reasoning ---
+Test #1: Who collaborates with a UX designer?
+Expected: ['Abhishek', 'I']
+Retrieved: RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup....
+Verdict: ❌ FAIL
+Reason: Memory mentions Riya, not Abhishek or collaboration with UX designer.
+----------------------------------------
+Test #2: Who works with a startup founder?
+Expected: ['Riya', 'Karan']
+Retrieved: AARAV --WORKS_A--> STARTUP_FOUNDER
+AARAV --BUILT--> COMPANY_FROM_SCRATCH
+Aarav works as a startup founder. He built his company from scratch.
+RIYA --WORKS_WITH--> AARAV
+AARAV --RUN--> STARTUP
+RIYA --WORKS_AT--> STARTUP
+Riya works with Aarav at his startup.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works ...
+Verdict: ✅ PASS
+Reason: Riya and Karan are mentioned as working with or related to startup founder Aarav.
+----------------------------------------
+Test #3: Who is connected to venture capital?
+Expected: ['Aarav', 'TechNova']
+Retrieved: AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+TECHNOVA --RAISED_FUNDING_FROM--> SEQUOIA_CAPITAL
+TechNova raised funding from Sequoia Capital.
+USER --BELIEVES_IN--> OPEN_SOURCE_PHILOSOPHY
+USER --CONTRIBUTES_TO--> PROJECTS...
+Verdict: ✅ PASS
+Reason: Aarav and TechNova are linked to venture capital/funding.
+----------------------------------------
+Test #4: Who collaborates with someone who avoids dark colors?
+Expected: ['Abhishek', 'I']
+Retrieved: RIYA --AVOID--> DARK_COLOR_PALETTES_IN_DESIGNS
+Riya avoids using dark color palettes in her designs.
+USER --PREFER--> DARK_MODE_INTERFACES
+I prefer dark mode interfaces in all applications.
+RIYA --WORKS_A--> UX_DESIGNER
+USER --COLLABORATES_WITH--> RIYA
+USER --PARTNERED_WITH--> RIYA_FOR_DESIGN_PROJEC...
+Verdict: ✅ PASS
+Reason: Abhishek collaborates with Riya, who avoids dark colors.
+----------------------------------------
+Test #5: Find people connected to tech startups
+Expected: ['Aarav', 'Riya', 'TechNova']
+Retrieved: AARAV --FOLLOW--> Y_COMBINATOR
+Aarav follows several startup accelerators like Y Combinator.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+AARAV --INTERESTED_IN--> VENTURE_CAP...
+Verdict: ✅ PASS
+Reason: Contains Aarav and Riya connected to tech startups.
+----------------------------------------
+Test #6: Who knows someone in Singapore?
+Expected: ['Karan', 'Vikram']
+Retrieved: VIKRAM --LIVES_IN--> SINGAPORE
+VIKRAM --MOVED_TO--> SINGAPORE_FOR_WORK
+Vikram lives in Singapore. He moved there for work....
+Verdict: ✅ PASS
+Reason: Vikram lives in Singapore, matching expected info.
+----------------------------------------
+Test #7: Who is connected to Dr. Sharma?
+Expected: ['Meera']
+Retrieved: Dr. Sharma wrote a book on cognitive therapy.
+MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist....
+Verdict: ✅ PASS
+Reason: Meera is directly connected to Dr. Sharma as her mentor.
+----------------------------------------
+Test #8: Who is friends with an artist?
+Expected: ['Riya', 'Aria']
+Retrieved: ARIA --FRIEND_OF--> RIYA
+ARIA --MET_AT--> ART_EXHIBITION
+RIYA --MET_AT--> ART_EXHIBITION
+Aria and Riya are friends. They met at an art exhibition.
+USER --WIFE_OF--> ARIA
+ARIA --IS--> ARTIST
+My wife's name is Aria. She is an artist.
+RIYA --WORKS_A--> UX_DESIGNER
+USER --COLLABORATES_WITH--> RIYA
+USER ...
+Verdict: ✅ PASS
+Reason: Aria is an artist and friends with Riya.
+----------------------------------------
+Test #9: Who is connected to TechNova?
+Expected: ['Aarav', 'Sequoia']
+Retrieved: AARAV --BUILT--> TECHNOVA
+Aarav founded TechNova in 2022.
+TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+TECHNOVA --RAISED_FUNDING_FROM--> SEQUOIA_CAPITAL
+TechNova raised funding from Sequoia Capital....
+Verdict: ✅ PASS
+Reason: Contains Aarav and Sequoia connected to TechNova.
+----------------------------------------
+Test #10: Who attended university with someone in Delhi?
+Expected: ['Abhishek', 'Karan', 'I']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there....
+Verdict: ✅ PASS
+Reason: Karan attended university in Delhi with Abhishek.
+----------------------------------------
+Test #11: Who is married to someone who paints?
+Expected: ['Abhishek', 'I', 'Aria']
+Retrieved: USER --WIFE_OF--> ARIA
+ARIA --IS--> ARTIST
+My wife's name is Aria. She is an artist.
+ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria loves painting landscapes. She uses watercolors.
+ARIA --FRIEND_OF--> RIYA
+ARIA --MET_AT--> ART_EXHIBITION
+RIYA --MET_AT--> ART_EXHIBITION
+Aria and Ri...
+Verdict: ✅ PASS
+Reason: Abhishek's wife Aria is an artist who paints.
+----------------------------------------
+Test #12: Who works with someone interested in human-centered design?
+Expected: ['Aarav', 'Riya']
+Retrieved: RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --WORKS_A--> UX_DESIGNER
+USER --COLLABORATES_WITH--> RIYA
+USER --PARTNERED_WITH--> RIYA_FOR_DESIGN_PROJECTS
+I collaborate with Riya on design projects. We make a great team.
+RIYA --PRACTICE...
+Verdict: ✅ PASS
+Reason: Riya is explicitly linked to human-centered design and collaborates with Abhishek.
+----------------------------------------
+Test #13: Who consults with a company founder?
+Expected: ['Karan', 'Aarav']
+Retrieved: KARAN --CONSULT--> AARAV
+AARAV --PROVIDES_ADVICE_ON--> BUSINESS_ANALYTICS
+Karan consults Aarav on business analytics.
+AARAV --WORKS_A--> STARTUP_FOUNDER
+AARAV --BUILT--> COMPANY_FROM_SCRATCH
+Aarav works as a startup founder. He built his company from scratch.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Kara...
+Verdict: ❌ FAIL
+Reason: Expected individuals Karan and Aarav not directly linked as consultants.
+----------------------------------------
+Test #14: Who knows someone who wrote a book?
+Expected: ['Meera', 'Dr. Sharma']
+Retrieved: Dr. Sharma wrote a book on cognitive therapy.
+USER --READ--> PHILOSOPHY
+USER --READ--> TECHNOLOGY
+I read books on philosophy and technology.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOG...
+Verdict: ✅ PASS
+Reason: Dr. Sharma wrote a book, and Meera knows her.
+----------------------------------------
+Test #15: Who is connected to someone who raised funding?
+Expected: ['Aarav', 'TechNova', 'Sequoia']
+Retrieved: AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+TECHNOVA --RAISED_FUNDING_FROM--> SEQUOIA_CAPITAL
+TechNova raised funding from Sequoia Capital.
+USER --BELIEVES_IN--> OPEN_SOURCE_PHILOSOPHY
+USER --CONTRIBUTES_TO--> PROJECTS...
+Verdict: ✅ PASS
+Reason: TechNova raised funding from Sequoia Capital, connecting Aarav and TechNova to funding.
+----------------------------------------
+Test #16: Who works with an iPhone user?
+Expected: ['Aarav', 'Riya']
+Retrieved: RIYA --USE--> IPHONE_FOR_PHOTOGRAPHY_WORK
+Riya uses an iPhone for all her photography work.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+USER --DISCUSSE--> ETHICS_OF_AI
+USER --WORKS_WITH--> COLLEAGUES
+I often discuss ethics of AI with my colleagues.
+RIYA --WORKS_A--> UX_DESIGNER
+USE...
+Verdict: ✅ PASS
+Reason: Riya and Aarav are explicitly mentioned as working together.
+----------------------------------------
+Test #17: Who is connected to AI solutions?
+Expected: ['Aarav', 'TechNova', 'Abhishek', 'I']
+Retrieved: TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+USER --DISCUSSE--> ETHICS_OF_AI
+USER --WORKS_WITH--> COLLEAGUES
+I often discuss ethics of AI with my colleagues....
+Verdict: ✅ PASS
+Reason: Contains Aarav, TechNova, Abhishek, and I connected to AI solutions.
+----------------------------------------
+Test #18: Who knows someone interested in cognitive behavior?
+Expected: ['Dr. Sharma', 'Meera']
+Retrieved: MEERA --STUDIE--> COGNITIVE_BEHAVIOR_THERAPY
+Meera is interested in cognitive behavior and therapy.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+Dr. Sharma wrote a book on cognitive therapy.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER...
+Verdict: ✅ PASS
+Reason: Meera's interest in cognitive behavior is explicitly mentioned.
+----------------------------------------
+Test #19: Who is connected to Manchester United fans?
+Expected: ['Vikram', 'Karan']
+Retrieved: KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood....
+Verdict: ✅ PASS
+Reason: Karan is connected to Manchester United fans as per retrieved memories.
+----------------------------------------
+Test #20: Who collaborates on design with someone in Bangalore?
+Expected: ['Abhishek', 'I', 'Riya']
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work....
+Verdict: ✅ PASS
+Reason: Riya in Bangalore is linked to Abhishek's collaboration.
+----------------------------------------
+Test #21: Who is connected to watercolor artists?
+Expected: ['Abhishek', 'I', 'Aria', 'Riya']
+Retrieved: ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria loves painting landscapes. She uses watercolors.
+USER --WIFE_OF--> ARIA
+ARIA --IS--> ARTIST
+My wife's name is Aria. She is an artist.
+ARIA --FRIEND_OF--> RIYA
+ARIA --MET_AT--> ART_EXHIBITION
+RIYA --MET_AT--> ART_EXHIBITION
+Aria and Ri...
+Verdict: ✅ PASS
+Reason: Contains Aria and Riya connected to watercolor artists.
+----------------------------------------
+Test #22: Who has connections in the finance industry?
+Expected: ['Karan', 'Vikram']
+Retrieved: KARAN --BROTHER_OF--> VIKRAM
+VIKRAM --WORKS_IN--> FINANCE
+Karan's brother is Vikram. He works in finance.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+KARAN --CONSULT--> AARAV
+AARAV --PROVIDES_ADVICE_ON--> BUSINESS_ANAL...
+Verdict: ✅ PASS
+Reason: Karan and Vikram are linked to finance industry through work.
+----------------------------------------
+Test #23: Who knows someone at a startup accelerator?
+Expected: ['Aarav']
+Retrieved: AARAV --FOLLOW--> Y_COMBINATOR
+Aarav follows several startup accelerators like Y Combinator.
+RIYA --WORKS_WITH--> AARAV
+AARAV --RUN--> STARTUP
+RIYA --WORKS_AT--> STARTUP
+Riya works with Aarav at his startup.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is intereste...
+Verdict: ✅ PASS
+Reason: Aarav is linked to startup accelerator Y Combinator.
+----------------------------------------
+Test #24: Who uses Apple products and knows a startup founder?
+Expected: ['Riya', 'Aarav']
+Retrieved: AARAV --WORKS_A--> STARTUP_FOUNDER
+AARAV --BUILT--> COMPANY_FROM_SCRATCH
+Aarav works as a startup founder. He built his company from scratch.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+AARAV --FOLLOW-->...
+Verdict: ✅ PASS
+Reason: Aarav uses MacBook and works as startup founder; Riya works at tech startup.
+----------------------------------------
+Test #25: Who is connected to Pune through psychology?
+Expected: ['Meera']
+Retrieved: MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there....
+Verdict: ✅ PASS
+Reason: Meera is connected to Pune and relevant to psychology context.
+----------------------------------------
+Test #26: Who knows a data analyst?
+Expected: ['Vikram', 'Aarav', 'Abhishek', 'I']
+Retrieved: KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --USE--> SQL
+Karan knows SQL very well. He uses it daily.
+KARAN --CONSULT--> AARAV
+AARAV --PROVIDES_ADVICE_ON--> BUSINESS_ANALYTICS
+Karan consults Aarav on business analytics.
+KARAN --PREFERS_WORKING_WITH--...
+Verdict: ✅ PASS
+Reason: Contains Abhishek (I) and others who know data analysis.
+----------------------------------------
+Test #27: Who works with someone who uses Power BI?
+Expected: ['Aarav', 'Karan']
+Retrieved: KARAN --USE--> POWER_BI
+Karan is proficient in Power BI for data visualization....
+Verdict: ✅ PASS
+Reason: Contains mention of Karan using Power BI as required.
+----------------------------------------
+Test #28: Who is connected to open-source contributors?
+Expected: ['Riya', 'Aria']
+Retrieved: USER --BELIEVES_IN--> OPEN_SOURCE_PHILOSOPHY
+USER --CONTRIBUTES_TO--> PROJECTS
+I believe in open-source philosophy. I contribute to many projects.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+USER --DISCUSSE--> ETHICS_O...
+Verdict: ✅ PASS
+Reason: Contains direct mention of Riya and Aria as collaborators.
+----------------------------------------
+Test #29: Who has connections in Mumbai tech scene?
+Expected: ['Aarav', 'TechNova', 'Riya']
+Retrieved: AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there....
+Verdict: ✅ PASS
+Reason: Contains Aarav and Mumbai connections as expected.
+----------------------------------------
+Test #30: Who knows someone who exercises regularly?
+Expected: ['Karan', 'Riya', 'Aria']
+Retrieved: USER --EXERCISES_THREE_TIMES_A_WEEK--> RUNNING
+USER --FAVORITE_ACTIVITY--> RUNNING
+I exercise three times a week. Running is my favorite.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+KARAN --USE--> SQL
+Karan knows SQL very well. He uses it daily.
+MEER...
+Verdict: ✅ PASS
+Reason: Karan and Aria are mentioned as exercising regularly.
+----------------------------------------
+Test #31: Who is connected to digital immortality research?
+Expected: ['Riya']
+Retrieved: USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study Artificial Intelligence at university. It's my passion.
+USER --DISCUSSE--> ETHICS_OF_AI
+USER --WORKS_WITH--> COLLEAGUES
+I often discuss ethics of AI with my colleagues.
+MEERA --READ--> RESEARCH_PAPERS_ON_C...
+Verdict: ❌ FAIL
+Reason: Riya not mentioned; no connection to digital immortality research.
+----------------------------------------
+Test #32: Who knows a lo-fi music listener?
+Expected: ['Aria', 'Karan', 'Riya']
+Retrieved: I listen to lo-fi music while coding.
+USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+USER --PREFER--> DARK_MODE_INTERFACES
+I ...
+Verdict: ❌ FAIL
+Reason: No mention of lo-fi music listeners or related names.
+----------------------------------------
+Test #33: Who works with someone from a consulting firm?
+Expected: ['Aarav', 'Karan']
+Retrieved: KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --CONSULT--> AARAV
+AARAV --PROVIDES_ADVICE_ON--> BUSINESS_ANALYTICS
+Karan consults Aarav on business analytics.
+RIYA --WORKS_A--> UX_DESIGNER
+USER --COLLABORATES_WITH--> RIYA
+USER --PARTNERED_WITH--> RIYA_F...
+Verdict: ✅ PASS
+Reason: Karan works with Aarav, who is from a consulting firm.
+----------------------------------------
+Test #34: Who is connected to art exhibition visitors?
+Expected: ['Abhishek', 'I', 'Aria', 'Riya']
+Retrieved: ARIA --FRIEND_OF--> RIYA
+ARIA --MET_AT--> ART_EXHIBITION
+RIYA --MET_AT--> ART_EXHIBITION
+Aria and Riya are friends. They met at an art exhibition.
+USER --WIFE_OF--> ARIA
+ARIA --IS--> ARTIST
+My wife's name is Aria. She is an artist.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. H...
+Verdict: ✅ PASS
+Reason: Aria and Riya met at an art exhibition; Aria is Abhishek's wife.
+----------------------------------------
+Test #35: Find the chain from Karan to Singapore
+Expected: ['Karan', 'Vikram', 'Singapore']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --USE--> SQL
+Karan knows SQL very well. He uses it daily.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_...
+Verdict: ✅ PASS
+Reason: Contains chain: Karan → Vikram → Singapore via brother's workplace.
+----------------------------------------
+Test #36: Who is connected to the 2022 startup ecosystem?
+Expected: ['Aarav', 'TechNova']
+Retrieved: AARAV --BUILT--> TECHNOVA
+Aarav founded TechNova in 2022.
+RIYA --JOINED--> STARTUP_IN_2024
+Riya joined the startup in 2024.
+AARAV --FOLLOW--> Y_COMBINATOR
+Aarav follows several startup accelerators like Y Combinator.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA...
+Verdict: ✅ PASS
+Reason: Aarav and TechNova are directly mentioned in retrieved memories.
+----------------------------------------
+Test #37: Who knows someone who values design empathy?
+Expected: ['Aarav', 'Abhishek', 'I']
+Retrieved: RIYA --PRACTICE--> DESIGN_EMPIRY
+RIYA --PRIORITIZE--> USERS_FIRST_APPROACH
+Riya believes in design empathy. Users first.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+USER --UNDERSTAND--> SYSTEM_DESIGN
+USER --UNDERSTAND--> DISTRIBUTED_SYSTE...
+Verdict: ✅ PASS
+Reason: Aarav and Abhishek are both mentioned as valuing design empathy through context.
+----------------------------------------
+Test #38: Who is connected to Arch Linux users?
+Expected: ['Riya', 'Aria', 'Karan']
+Retrieved: USER --USE--> LINUX
+USER --FAVOR--> UBUNTU
+USER --FAVOR--> ARCH
+I use Linux as my primary operating system. Ubuntu and Arch are my favorites....
+Verdict: ❌ FAIL
+Reason: Does not mention Riya, Aria, or Karan connected to Arch Linux users.
+----------------------------------------
+Test #39: Who has indirect connection to painting?
+Expected: ['Riya', 'Abhishek', 'I']
+Retrieved: ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria loves painting landscapes. She uses watercolors.
+USER --WIFE_OF--> ARIA
+ARIA --IS--> ARTIST
+My wife's name is Aria. She is an artist.
+ARIA --FRIEND_OF--> RIYA
+ARIA --MET_AT--> ART_EXHIBITION
+RIYA --MET_AT--> ART_EXHIBITION
+Aria and Ri...
+Verdict: ✅ PASS
+Reason: Contains Riya and Abhishek via "My wife's name is Aria" linking to Aria.
+----------------------------------------
+Test #40: Who knows someone interested in distributed systems?
+Expected: ['Riya', 'Karan', 'Aria']
+Retrieved: USER --UNDERSTAND--> SYSTEM_DESIGN
+USER --UNDERSTAND--> DISTRIBUTED_SYSTEMS_ARCHITECTURE
+I understand system design and distributed systems architecture.
+USER --BELIEVES_IN--> OPEN_SOURCE_PHILOSOPHY
+USER --CONTRIBUTES_TO--> PROJECTS
+I believe in open-source philosophy. I contribute to many projects....
+Verdict: ✅ PASS
+Reason: Riya and Karan are explicitly mentioned as interested in relevant topics.
+----------------------------------------
+Test #41: Who is 2 hops from a psychologist?
+Expected: ['Karan', 'Riya']
+Retrieved: MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+MEERA --STUDIE--> COGNITIVE_BEHAVIOR_THERAPY
+Meera is i...
+Verdict: ✅ PASS
+Reason: Karan and Riya are mentioned as being two hops from a psychologist through Meera and Dr. Sharma.
+----------------------------------------
+Test #42: Who is connected to coffee enthusiasts?
+Expected: ['Riya', 'Karan', 'Aria']
+Retrieved: USER --DRINK--> BLACK_COFFEE
+USER --PREFER--> NO_SUGAR_COFFEE
+I drink coffee every morning. Black coffee, no sugar.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interes...
+Verdict: ❌ FAIL
+Reason: No mention of Riya, Karan, or Aria as coffee enthusiasts.
+----------------------------------------
+Test #43: Find connections to Sequoia Capital
+Expected: ['Aarav', 'TechNova']
+Retrieved: TECHNOVA --RAISED_FUNDING_FROM--> SEQUOIA_CAPITAL
+TechNova raised funding from Sequoia Capital....
+Verdict: ✅ PASS
+Reason: Contains expected connection: TechNova raised funding from Sequoia Capital.
+----------------------------------------
+Test #44: Who knows someone who graduated in 2023?
+Expected: ['Karan', 'Riya', 'Aria']
+Retrieved: I graduated from university in 2023.
+RIYA --JOINED--> STARTUP_IN_2024
+Riya joined the startup in 2024.
+USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study Artificial Intelligence at university. It's my passion.
+USER --ATTENDED_UNIVERSITY_WITH--> KARAN
+USER ...
+Verdict: ✅ PASS
+Reason: Contains mentions of Karan and Riya who graduated in 2023.
+----------------------------------------
+Test #45: Who has indirect connection to Delhi?
+Expected: ['Abhishek', 'I', 'Vikram', 'Aarav']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there....
+Verdict: ❌ FAIL
+Reason: Does not mention Abhishek, Vikram, or Aarav; only references Karan.
+----------------------------------------
+Test #46: Who is connected to someone with a quiet workspace preference?
+Expected: ['Riya', 'Karan', 'Aria']
+Retrieved: USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+I listen to lo-fi music while coding.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VA...
+Verdict: ✅ PASS
+Reason: Riya and Karan are directly mentioned with preferences aligning with quiet workspace.
+----------------------------------------
+Test #47: Who knows a Y Combinator follower?
+Expected: ['Riya', 'Karan', 'TechNova']
+Retrieved: AARAV --FOLLOW--> Y_COMBINATOR
+Aarav follows several startup accelerators like Y Combinator....
+Verdict: ❌ FAIL
+Reason: Does not mention Riya, Karan, or TechNova as followers.
+----------------------------------------
+Test #48: Who is connected to someone learning Rust?
+Expected: ['Riya', 'Karan', 'Aria']
+Retrieved: USER --LEARNED--> RUST PROGRAMMING
+Last month I started learning Rust programming.
+USER --FAVOR--> PYTHON
+USER --LIKES--> RUST
+My favorite programming language is Python but I also like Rust....
+Verdict: ❌ FAIL
+Reason: No mention of Riya, Karan, or Aria in retrieved memories.
+----------------------------------------
+Test #49: Find the path from Abhishek to Sequoia
+Expected: ['Abhishek', 'Riya', 'Aarav', 'TechNova', 'Sequoia']
+Retrieved: TECHNOVA --RAISED_FUNDING_FROM--> SEQUOIA_CAPITAL
+TechNova raised funding from Sequoia Capital....
+Verdict: ❌ FAIL
+Reason: Missing Abhishek, Riya, Aarav in the path.
+----------------------------------------
+Test #50: Who has 3-hop connection to Dr. Sharma?
+Expected: ['Abhishek', 'I', 'Riya']
+Retrieved: Dr. Sharma wrote a book on cognitive therapy.
+MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist....
+Verdict: ✅ PASS
+Reason: Abhishek (I) has 3-hop connection via Meera to Dr. Sharma.
+----------------------------------------
+
+--- CATEGORY: Consistency ---
+Test #1: What does Abhishek like?
+Expected: ['black', 'dark']
+Retrieved: AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+USER --LIKES--> BLACK
+USER --PREFER--> DARK_THEMES
+My favorite color is black. I really love dark themes everywhere.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is intere...
+Verdict: ✅ PASS
+Reason: Contains explicit mentions of black and dark themes matching the query.
+----------------------------------------
+Test #2: Where does Riya live?
+Expected: ['Bangalore']
+Retrieved: RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --AVOID--> CLUTTERED_LAYOUTS
+RIYA --VALUE--> WHITESPACE
+Riya dislikes cluttered layouts. She values whitespace...
+Verdict: ❌ FAIL
+Reason: Retrieved memories do not mention Riya's residence or location.
+----------------------------------------
+Test #3: What does Karan work as?
+Expected: ['data analyst']
+Retrieved: KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --PREFERS_WORKING_WITH--> STRUCTURED_DATASETS
+Karan prefers working with structured datasets.
+KARAN --USE--> POW...
+Verdict: ✅ PASS
+Reason: Karan works as a data analyst at a consulting firm.
+----------------------------------------
+Test #4: What does Abhishek study?
+Expected: ['AI', 'Artificial Intelligence']
+Retrieved: USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study Artificial Intelligence at university. It's my passion.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTEREST...
+Verdict: ✅ PASS
+Reason: Abhishek studies Artificial Intelligence, matching the expected info.
+----------------------------------------
+Test #5: Who is Abhishek's wife?
+Expected: ['Aria']
+Retrieved: USER --WIFE_OF--> ARIA
+ARIA --IS--> ARTIST
+My wife's name is Aria. She is an artist.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there....
+Verdict: ✅ PASS
+Reason: Contains direct statement that Abhishek's wife is Aria.
+----------------------------------------
+Test #6: What OS does Abhishek use?
+Expected: ['Linux']
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+USER --USE--> LINUX
+USER --FAVOR--> UBUNTU
+USER --FAVOR--> ARCH
+I use Linux as my primary operating system. Ubuntu and Arch are my favorites.
+RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem ove...
+Verdict: ✅ PASS
+Reason: Contains direct statement that "I use Linux" and mentions Ubuntu/Arch as favorites.
+----------------------------------------
+Test #7: What laptop does Aarav use?
+Expected: ['MacBook']
+Retrieved: TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. H...
+Verdict: ✅ PASS
+Reason: Aarav uses a MacBook, directly answering the query.
+----------------------------------------
+Test #8: Where is Karan from?
+Expected: ['Delhi']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data an...
+Verdict: ✅ PASS
+Reason: Contains explicit information that Karan is from Delhi.
+----------------------------------------
+Test #9: What does Meera study?
+Expected: ['Psychology']
+Retrieved: MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology a...
+Verdict: ✅ PASS
+Reason: Meera studies Psychology at college.
+----------------------------------------
+Test #10: What sport does Karan play?
+Expected: ['football']
+Retrieved: KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --USE--> POWER_BI
+Karan is proficient in Power BI for ...
+Verdict: ✅ PASS
+Reason: Karan plays football every weekend as stated in retrieved memories.
+----------------------------------------
+Test #11: What phone does Riya use?
+Expected: ['iPhone']
+Retrieved: RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem over Android.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for wo...
+Verdict: ❌ FAIL
+Reason: No mention of Riya's phone or device preference.
+----------------------------------------
+Test #12: Who does Abhishek collaborate with?
+Expected: ['Riya']
+Retrieved: RIYA --WORKS_A--> UX_DESIGNER
+USER --COLLABORATES_WITH--> RIYA
+USER --PARTNERED_WITH--> RIYA_FOR_DESIGN_PROJECTS
+I collaborate with Riya on design projects. We make a great team.
+RIYA --WORKS_WITH--> AARAV
+AARAV --RUN--> STARTUP
+RIYA --WORKS_AT--> STARTUP
+Riya works with Aarav at his startup.
+AARAV ...
+Verdict: ✅ PASS
+Reason: Abhishek collaborates with Riya as stated in multiple retrieved memories.
+----------------------------------------
+Test #13: What is Aarav's company?
+Expected: ['TechNova']
+Retrieved: AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+AARAV --WORKS_A--> STARTUP_FOUNDER
+AARAV --BUILT--> COMPANY_FROM_SCRATCH
+Aarav works as a startup founder. He built his company from scratch.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav p...
+Verdict: ✅ PASS
+Reason: Aarav built TechNova, directly answering the query.
+----------------------------------------
+Test #14: What coffee does Abhishek drink?
+Expected: ['black']
+Retrieved: USER --DRINK--> BLACK_COFFEE
+USER --PREFER--> NO_SUGAR_COFFEE
+I drink coffee every morning. Black coffee, no sugar.
+MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aar...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of black coffee as drink.
+----------------------------------------
+Test #15: What editor does Abhishek use?
+Expected: ['VSCode']
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+USER --PREFER--> VS_CODE
+I prefer VSCode as my code editor.
+ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria loves painting landscapes. She uses watercolors.
+USER --PREFER--> DARK_MODE_INTERFACES
+I prefer dark mode interf...
+Verdict: ✅ PASS
+Reason: Contains direct statement that "I prefer VSCode as my code editor."
+----------------------------------------
+Test #16: Who is Meera's mentor?
+Expected: ['Sharma', 'Dr.']
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every ni...
+Verdict: ✅ PASS
+Reason: Meera's mentor is Dr. Sharma, directly stated in retrieved memory.
+----------------------------------------
+Test #17: What language is Abhishek learning?
+Expected: ['Rust']
+Retrieved: USER --KNOW--> PYTHON
+USER --USE--> PYTHON
+I know Python very well. It's my main programming language.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --L...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of Abhishek learning Rust programming.
+----------------------------------------
+Test #18: Where did Vikram move?
+Expected: ['Singapore']
+Retrieved: VIKRAM --LIVES_IN--> SINGAPORE
+VIKRAM --MOVED_TO--> SINGAPORE_FOR_WORK
+Vikram lives in Singapore. He moved there for work.
+KARAN --BROTHER_OF--> VIKRAM
+VIKRAM --WORKS_IN--> FINANCE
+Karan's brother is Vikram. He works in finance....
+Verdict: ✅ PASS
+Reason: Contains explicit information that Vikram moved to Singapore.
+----------------------------------------
+Test #19: What does Aria paint?
+Expected: ['landscape', 'watercolor']
+Retrieved: USER --WIFE_OF--> ARIA
+ARIA --IS--> ARTIST
+My wife's name is Aria. She is an artist.
+ARIA --LIKES--> LANDSCAPE_PAINTING
+ARIA --USE--> WATERCOLORS
+Aria loves painting landscapes. She uses watercolors.
+ARIA --FRIEND_OF--> RIYA
+ARIA --MET_AT--> ART_EXHIBITION
+RIYA --MET_AT--> ART_EXHIBITION
+Aria and Ri...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of landscape and watercolor painting.
+----------------------------------------
+Test #20: When did Abhishek graduate?
+Expected: ['2023']
+Retrieved: I graduated from university in 2023....
+Verdict: ✅ PASS
+Reason: Contains expected graduation year 2023.
+----------------------------------------
+Test #21: What time does Abhishek sleep?
+Expected: ['2 AM', 'late']
+Retrieved: I sleep late, usually around 2 AM.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+I listen to lo-fi music while coding.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+A...
+Verdict: ✅ PASS
+Reason: Contains expected information about sleeping time.
+----------------------------------------
+Test #22: What music does Abhishek listen to?
+Expected: ['lo-fi']
+Retrieved: I listen to lo-fi music while coding.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends th...
+Verdict: ✅ PASS
+Reason: Contains expected information about lo-fi music preference.
+----------------------------------------
+Test #23: What movies does Abhishek like?
+Expected: ['sci-fi', 'science fiction']
+Retrieved: My favorite movie genre is science fiction.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+USER --LIKES--> BLACK
+USER --PREFER-...
+Verdict: ✅ PASS
+Reason: Contains expected information about science fiction movie genre.
+----------------------------------------
+Test #24: How often does Abhishek exercise?
+Expected: ['three times', 'week']
+Retrieved: USER --EXERCISES_THREE_TIMES_A_WEEK--> RUNNING
+USER --FAVORITE_ACTIVITY--> RUNNING
+I exercise three times a week. Running is my favorite.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEEKEND
+Kar...
+Verdict: ✅ PASS
+Reason: Contains "I exercise three times a week" matching Abhishek's exercise frequency.
+----------------------------------------
+Test #25: What does Karan support?
+Expected: ['Manchester United']
+Retrieved: KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --PREFERS_WORKING_WITH--> STRUCTURED_DATASETS
+Karan pr...
+Verdict: ✅ PASS
+Reason: Karan supports Manchester United is explicitly stated.
+----------------------------------------
+Test #26: Who funded TechNova?
+Expected: ['Sequoia']
+Retrieved: AARAV --BUILT--> TECHNOVA
+Aarav founded TechNova in 2022.
+TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+TECHNOVA --RAISED_FUNDING_FROM--> SEQUOIA_CAPITAL
+TechNova raised funding from Sequoia Capital....
+Verdict: ✅ PASS
+Reason: TechNova raised funding from Sequoia Capital.
+----------------------------------------
+Test #27: When was TechNova founded?
+Expected: ['2022']
+Retrieved: AARAV --BUILT--> TECHNOVA
+Aarav founded TechNova in 2022.
+TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+TECHNOVA --RAISED_FUNDING_FROM--> SEQUOIA_CAPITAL
+TechNova raised funding from Sequoia Capital....
+Verdict: ❌ FAIL
+Reason: Memory mentions Aarav founding TechNova in 2022, not Abhishek.
+----------------------------------------
+Test #28: What does Karan know?
+Expected: ['SQL', 'Power BI']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --USE--> SQL
+Karan knows SQL very well. He uses it daily.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --USE--> POWER_BI
+Karan is proficient in Power B...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of SQL and Power BI skills.
+----------------------------------------
+Test #29: What does Riya dislike?
+Expected: ['clutter']
+Retrieved: RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem over Android.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in hum...
+Verdict: ✅ PASS
+Reason: Riya avoids cluttered layouts, directly matching the dislike of clutter.
+----------------------------------------
+Test #30: What does Meera practice?
+Expected: ['mindfulness']
+Retrieved: MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+MEERA --PRACTICE--> MINDFULNESS_MEDITATION_DAILY
+Meera practices mindfulness meditation daily.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies ...
+Verdict: ✅ PASS
+Reason: Meera practices mindfulness meditation daily, matching the expected info.
+----------------------------------------
+Test #31: What does Abhishek believe in?
+Expected: ['open-source']
+Retrieved: USER --BELIEVES_IN--> OPEN_SOURCE_PHILOSOPHY
+USER --CONTRIBUTES_TO--> PROJECTS
+I believe in open-source philosophy. I contribute to many projects.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --LIVES_IN--> MUMBAI
+...
+Verdict: ✅ PASS
+Reason: Contains explicit statement of belief in open-source philosophy.
+----------------------------------------
+Test #32: What colors does Riya like?
+Expected: ['pastel']
+Retrieved: RIYA --AVOID--> CLUTTERED_LAYOUTS
+RIYA --VALUE--> WHITESPACE
+Riya dislikes cluttered layouts. She values whitespace.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives...
+Verdict: ❌ FAIL
+Reason: No mention of colors or pastel preferences in retrieved memories.
+----------------------------------------
+Test #33: What project is Abhishek working on?
+Expected: ['After Human']
+Retrieved: Yesterday I had a meeting with the team about the project roadmap.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+RIYA --WORKS_WITH--> AARAV
+AARAV --RUN--> STARTUP
+RIYA --WORKS_AT--> STARTUP
+Riya works with Aarav at his s...
+Verdict: ❌ FAIL
+Reason: No mention of Abhishek's project or any related details.
+----------------------------------------
+Test #34: Who is Karan's brother?
+Expected: ['Vikram']
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEE...
+Verdict: ❌ FAIL
+Reason: Retrieved memories do not mention Vikram or Karan's brother.
+----------------------------------------
+Test #35: What does Vikram work in?
+Expected: ['finance']
+Retrieved: VIKRAM --LIVES_IN--> SINGAPORE
+VIKRAM --MOVED_TO--> SINGAPORE_FOR_WORK
+Vikram lives in Singapore. He moved there for work.
+KARAN --BROTHER_OF--> VIKRAM
+VIKRAM --WORKS_IN--> FINANCE
+Karan's brother is Vikram. He works in finance....
+Verdict: ✅ PASS
+Reason: Vikram works in finance is explicitly stated.
+----------------------------------------
+Test #36: How did Aria and Riya meet?
+Expected: ['art exhibition']
+Retrieved: ARIA --FRIEND_OF--> RIYA
+ARIA --MET_AT--> ART_EXHIBITION
+RIYA --MET_AT--> ART_EXHIBITION
+Aria and Riya are friends. They met at an art exhibition.
+RIYA --WORKS_WITH--> AARAV
+AARAV --RUN--> STARTUP
+RIYA --WORKS_AT--> STARTUP
+Riya works with Aarav at his startup.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MO...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of meeting at an art exhibition.
+----------------------------------------
+Test #37: What book did Dr. Sharma write?
+Expected: ['cognitive therapy']
+Retrieved: MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+Dr. Sharma wrote a book on cognitive therapy....
+Verdict: ✅ PASS
+Reason: Dr. Sharma wrote a book on cognitive therapy.
+----------------------------------------
+Test #38: What does Abhishek avoid?
+Expected: ['vendor lock-in']
+Retrieved: RIYA --AVOID--> DARK_COLOR_PALETTES_IN_DESIGNS
+Riya avoids using dark color palettes in her designs.
+I avoid vendor lock-in when choosing technologies.
+MEERA --AVOID--> SOCIAL_MEDIA_OVERLOAD
+MEERA --LIMIT--> SCREEN_TIME
+Meera dislikes social media overload. She limits her screen time.
+AARAV --PREFER...
+Verdict: ✅ PASS
+Reason: Contains "I avoid vendor lock-in" which matches Abhishek's avoidance.
+----------------------------------------
+Test #39: What accelerator does Aarav follow?
+Expected: ['Y Combinator']
+Retrieved: AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is call...
+Verdict: ✅ PASS
+Reason: Aarav follows Y Combinator, matching the expected accelerator.
+----------------------------------------
+Test #40: What does Karan prefer in data?
+Expected: ['structured']
+Retrieved: KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --AVOID--> MANUAL_DATA_ENTRY
+KARAN --AUTOMATE--> EVERYTHING
+Karan dislikes manual data entry. He automates everything.
+KARAN --PREFERS_WORKING_WITH--> STRUCTURED_DATASETS
+Karan prefers working with structur...
+Verdict: ✅ PASS
+Reason: Karan prefers working with structured datasets.
+----------------------------------------
+Test #41: What environments does Abhishek dislike?
+Expected: ['loud']
+Retrieved: USER --DISLIKE--> LOUD_ENVIRONMENTS
+USER --PREFERENCE--> QUIET_PLACES_FOR_WORK
+I dislike loud environments. I prefer quiet places to work.
+RIYA --AVOID--> CLUTTERED_LAYOUTS
+RIYA --VALUE--> WHITESPACE
+Riya dislikes cluttered layouts. She values whitespace.
+MEERA --AVOID--> SOCIAL_MEDIA_OVERLOAD
+MEERA...
+Verdict: ✅ PASS
+Reason: Contains explicit statement that Abhishek dislikes loud environments.
+----------------------------------------
+Test #42: What does Meera read?
+Expected: ['research papers']
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma....
+Verdict: ✅ PASS
+Reason: Meera reads research papers on cognitive psychology.
+----------------------------------------
+Test #43: What does Abhishek understand?
+Expected: ['system design', 'distributed']
+Retrieved: AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+KARAN --CONSULT--> AARAV
+AARAV --PROVIDES_ADVICE_ON-->...
+Verdict: ✅ PASS
+Reason: Contains "I understand system design and distributed systems architecture."
+----------------------------------------
+Test #44: When did Riya join the startup?
+Expected: ['2024']
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --PRACTICE--> DESIGN_EMPIRY
+RIYA --PRIORITIZE--> USERS_FIRST_APPROACH
+Riya believes in design empathy. Users first.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is int...
+Verdict: ❌ FAIL
+Reason: No mention of Riya's joining date or 2024 in retrieved memories.
+----------------------------------------
+Test #45: What places does Meera prefer?
+Expected: ['quiet café']
+Retrieved: MEERA --PREFER--> QUIET_CAFES_FOR_STUDYING
+Meera prefers quiet cafés for studying.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+MEER...
+Verdict: ✅ PASS
+Reason: Contains "quiet cafés" as preferred places.
+----------------------------------------
+Test #46: What does Abhishek read?
+Expected: ['philosophy', 'technology']
+Retrieved: USER --READ--> PHILOSOPHY
+USER --READ--> TECHNOLOGY
+I read books on philosophy and technology.
+MEERA --READ--> RESEARCH_PAPERS_ON_COGNITIVE_PSYCHOLOGY
+Meera reads research papers on cognitive psychology.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --INTERESTED_IN--> VENTURE_C...
+Verdict: ✅ PASS
+Reason: Contains direct mention of reading philosophy and technology.
+----------------------------------------
+Test #47: What work style does Aarav prefer?
+Expected: ['remote']
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+TECHNOVA --FOCUSES...
+Verdict: ✅ PASS
+Reason: Aarav prefers remote work, matching the expected information.
+----------------------------------------
+Test #48: What design principle does Riya believe in?
+Expected: ['empathy', 'users first']
+Retrieved: RIYA --WORKS_A--> UX_DESIGNER
+USER --COLLABORATES_WITH--> RIYA
+USER --PARTNERED_WITH--> RIYA_FOR_DESIGN_PROJECTS
+I collaborate with Riya on design projects. We make a great team.
+RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in her designs.
+RIYA --AVOID--> DARK_COLOR_PALETTES_IN_...
+Verdict: ✅ PASS
+Reason: Contains explicit mention of "design empathy" and "users first."
+----------------------------------------
+Test #49: What did Abhishek complete last week?
+Expected: ['architecture', 'memory system']
+Retrieved: USER --COMPLETED--> MEMORY_SYSTEM_ARCHITECTURE
+Last week I completed the memory system architecture.
+Yesterday I had a meeting with the team about the project roadmap.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV ...
+Verdict: ✅ PASS
+Reason: Contains "memory system architecture" and "last week I completed" matching query.
+----------------------------------------
+Test #50: What does Meera dislike about technology?
+Expected: ['social media', 'overload']
+Retrieved: MEERA --AVOID--> SOCIAL_MEDIA_OVERLOAD
+MEERA --LIMIT--> SCREEN_TIME
+Meera dislikes social media overload. She limits her screen time.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in P...
+Verdict: ✅ PASS
+Reason: Contains keywords "social media overload" and "screen time" as expected.
+----------------------------------------
+
+--- CATEGORY: Robustness ---
+Test #1: What car does Abhishek drive?
+Expected: None
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+RIYA --WORKS_WITH--> AARAV
+AARAV --RUN--> STARTUP
+RIYA --WORKS_AT--> STARTUP
+Riya works with Aarav at his startup.
+AAR...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #2: What is Riya's favorite food?
+Expected: None
+Retrieved: RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in her designs.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem over An...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #3: Does Karan play cricket?
+Expected: None
+Retrieved: KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEEKEND
+Karan likes football. He plays every weekend.
+KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports M...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #4: Where does Abhishek live?
+Expected: None
+Retrieved: AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+VIKRAM --LIVES_IN--> SINGAPORE
+VIKRAM --MOVED_TO--> SINGAPORE_FOR_WORK
+Vikram lives in Singapore. He moved there for work.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #5: Who is the CEO of After Human?
+Expected: None
+Retrieved: AARAV --FOLLOW--> Y_COMBINATOR
+Aarav follows several startup accelerators like Y Combinator.
+TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+USER ...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #6: What is Abhishek's salary?
+Expected: None
+Retrieved: AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBI...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #7: Does Riya have pets?
+Expected: None
+Retrieved: RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in her designs.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem over An...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #8: What is Karan's phone number?
+Expected: None
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's ...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #9: Does Meera have siblings?
+Expected: None
+Retrieved: MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #10: What is Aarav's net worth?
+Expected: None
+Retrieved: AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+AARAV --FOLLOW--> Y_COMBINATOR
+Aarav follows several startup accelerators like Y Combinator.
+AARAV ...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #11: Does Abhishek play any instrument?
+Expected: None
+Retrieved: I listen to lo-fi music while coding.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEEKEND
+Karan likes football. He plays every weekend.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #12: What is Riya's height?
+Expected: None
+Retrieved: RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in her designs.
+RIYA --AVOID--> DARK_COLOR_PALETTES_IN_DESIGNS
+Riya avoids using dark color palettes in her designs.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work....
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #13: Does Karan have children?
+Expected: None
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data an...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #14: What is Meera's blood type?
+Expected: None
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every ni...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #15: Where did Aarav go to college?
+Expected: None
+Retrieved: TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FR...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #16: Does Abhishek smoke?
+Expected: None
+Retrieved: AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is int...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #17: What is Riya's favorite restaurant?
+Expected: None
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in her designs.
+RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem over An...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #18: Does Karan own a house?
+Expected: None
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data an...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #19: What is Meera's email address?
+Expected: None
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather th...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #20: Does Aarav have a co-founder?
+Expected: None
+Retrieved: TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+AARAV --WORKS_A--> STARTUP_FOUNDER
+AARAV --BUILT--> COMPANY_FROM_SCRATCH
+Aarav works as a startup founder. He built his company from scratch.
+AARAV --INTERESTED_IN--> VENTURE_CA...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #21: What is Abhishek's Twitter handle?
+Expected: None
+Retrieved: AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is called TechNova. It focuses on AI solutions.
+AARAV --INTERESTED_IN...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #22: Does Riya know JavaScript?
+Expected: None
+Retrieved: RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA --PRACTICE--> DESIGN_EMPIRY
+RIYA --PRIORITIZE--> USERS_FIRST_APPROACH
+Riya believes in design empathy. Users first.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design princi...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #23: What bank does Karan use?
+Expected: None
+Retrieved: KARAN --BROTHER_OF--> VIKRAM
+VIKRAM --WORKS_IN--> FINANCE
+Karan's brother is Vikram. He works in finance.
+KARAN --USE--> SQL
+Karan knows SQL very well. He uses it daily.
+KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #24: Does Meera have a boyfriend?
+Expected: None
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Shar...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #25: What is Aarav's middle name?
+Expected: None
+Retrieved: AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+AARAV...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #26: Does Abhishek own cryptocurrency?
+Expected: None
+Retrieved: AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav ...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #27: What insurance does Riya have?
+Expected: None
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startu...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #28: Does Karan travel abroad frequently?
+Expected: None
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEE...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #29: What is Meera's GPA?
+Expected: None
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every ni...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #30: Does Aarav have investors other than Sequoia?
+Expected: None
+Retrieved: AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+TECHNOVA --FOCUSES_ON--> ARTIFICIAL_INTELLIGENCE_SOLUTIONS
+Aarav's company is call...
+Verdict: ❌ FAIL
+Reason: Incorrectly returned relevant results: TechNova raised funding only from Sequoia Capital, confirming no other investors.
+----------------------------------------
+Test #31: What is Abhishek's shoe size?
+Expected: None
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there....
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #32: Does Riya speak French?
+Expected: None
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startu...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #33: What is Karan's favorite movie?
+Expected: None
+Retrieved: KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEEKEND
+Karan likes football. He plays every weekend.
+KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports M...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #34: Does Meera cook?
+Expected: None
+Retrieved: MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at coll...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #35: What is Aarav's birthday?
+Expected: None
+Retrieved: AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+AARAV --INVESTS_IN--> EARLY_STAGE_TECH_STARTUPS
+Aarav invests in early-stage tech startups.
+AARAV...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #36: Does Abhishek have tattoos?
+Expected: None
+Retrieved: RIYA --LIKES--> PASTEL_COLORS_IN_DESIGNS
+Riya likes pastel colors in her designs.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARA...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #37: What gym does Riya go to?
+Expected: None
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --WORKS_AT--> TECH_STARTUP
+Riya works as a UX designer at a tech startup.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principle...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #38: Does Karan drive a Tesla?
+Expected: None
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --USE--> POWER_BI
+Karan is proficient in Power BI for ...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #39: What medication does Meera take?
+Expected: None
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --MENTORED_BY--> DR_SHARMA
+DR_SHARMA --IS_A--> REPUTED_PSYCHOLOGIST
+Meera's mentor is Dr. Sharma. She is a renowned psychologist.
+MEERA --STUDIE--> COGNITIVE_BEHAVIOR_THERAPY
+Meera is interested in cogn...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #40: Does Aarav have an MBA?
+Expected: None
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and funding.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+AAR...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #41: What is Abhishek's zodiac sign?
+Expected: None
+Retrieved: ...
+Verdict: ✅ PASS
+Reason: Correctly returned no results for unrelated query
+----------------------------------------
+Test #42: Does Riya have allergies?
+Expected: None
+Retrieved: RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in human-centered design principles.
+RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers t...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #43: What is Karan's favorite book?
+Expected: None
+Retrieved: KARAN --FANS_OF--> MANCHESTER_UNITED
+KARAN --HAS_BEEN_A_FAN_SINCE--> CHILDHOOD
+Karan supports Manchester United. He's been a fan since childhood.
+KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --PREFERS_WORKING_WITH--> STRUCTURED_DATASETS
+Karan pr...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #44: Does Meera play any sports?
+Expected: None
+Retrieved: MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at college.
+MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every ni...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #45: What is Aarav's LinkedIn URL?
+Expected: None
+Retrieved: AARAV --ATTEND--> NETWORKING_EVENTS
+Aarav likes networking events. He attends them regularly.
+AARAV --PREFER--> REMOTE_WORK
+AARAV --VALUE--> FLEXIBILITY
+Aarav prefers remote work. He values flexibility.
+AARAV --FOLLOW--> Y_COMBINATOR
+Aarav follows several startup accelerators like Y Combinator.
+AARA...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #46: Does Abhishek have a PhD?
+Expected: None
+Retrieved: USER --STUDIE--> ARTIFICIAL_INTELLIGENCE
+USER --PASSION_FOR--> ARTIFICIAL_INTELLIGENCE
+I study Artificial Intelligence at university. It's my passion.
+I graduated from university in 2023.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #47: What airline does Riya prefer?
+Expected: None
+Retrieved: RIYA --PREFER--> IOS_ECOSYSTEM
+RIYA --AVOID--> ANDROID_SYSTEM
+Riya prefers the iOS ecosystem over Android.
+RIYA --LIVES_IN--> BANGALORE
+RIYA --MOVED_TO--> BANGALORE_FOR_WORK
+Riya lives in Bangalore. She moved there for work.
+RIYA --STUDIE--> HUMAN_CENTERED_DESIGN_PRINCIPLES
+Riya is interested in hum...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #48: Does Karan gamble?
+Expected: None
+Retrieved: KARAN --LIVES_IN--> DELHI
+KARAN --GREW_UP_IN--> DELHI
+Karan lives in Delhi. He grew up there.
+KARAN --LIKES--> FOOTBALL
+KARAN --PLAY--> FOOTBALL_EVERY_WEEKEND
+Karan likes football. He plays every weekend.
+KARAN --WORKS_AT--> CONSULTING_FIRM
+Karan works as a data analyst at a consulting firm.
+KARAN -...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #49: What is Meera's favorite color?
+Expected: None
+Retrieved: MEERA --LIVES_IN--> PUNE
+MEERA --LOVES--> WEATHER_IN_PUNE
+Meera lives in Pune. She loves the weather there.
+MEERA --LIKES--> JOURNALING
+MEERA --WRITE--> EVERY_NIGHT
+Meera likes journaling. She writes every night.
+MEERA --STUDIE--> PSYCHOLOGY
+MEERA --ATTEND--> COLLEGE
+Meera studies Psychology at coll...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+Test #50: Does Aarav have a yacht?
+Expected: None
+Retrieved: AARAV --USE--> MACBOOK
+Aarav uses a MacBook for all his work.
+AARAV --LIVES_IN--> MUMBAI
+AARAV --RUNS_BUSINESS_FROM--> MUMBAI
+Aarav lives in Mumbai. He runs his business from there.
+AARAV --INTERESTED_IN--> VENTURE_CAPITAL
+AARAV --INTERESTED_IN--> FUNDING
+Aarav is interested in venture capital and f...
+Verdict: ✅ PASS
+Reason: Correctly irrelevant results
+----------------------------------------
+
+
+FINAL SCORE: 225/250 (90.0%)

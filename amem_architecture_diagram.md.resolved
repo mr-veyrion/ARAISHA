@@ -1,0 +1,572 @@
+# Amem Memory Architecture Diagram
+
+## Overview
+
+Amem is a hybrid memory system combining **vector-based semantic search** (FAISS + BGE-M3) with **graph-based relational reasoning** (SQLite property graph). It supports offline operation with local LLMs.
+
+```mermaid
+flowchart TB
+    subgraph External["External Interface"]
+        IS[integrated_system.py]
+        IA[interface/app.py]
+        MS[memory_system.py]
+    end
+    
+    subgraph Core["Core Memory (memory.py)"]
+        OM[OfflineMemory]
+    end
+    
+    subgraph Storage["Storage Layer"]
+        VS[LocalVectorStore<br/>FAISS]
+        GS[GraphStore<br/>SQLite]
+        EI[EntityIndex<br/>SQLite]
+        NV[NodeVectorIndex<br/>FAISS]
+        SM[SQLiteManager<br/>History]
+    end
+    
+    subgraph Embedding["Embedding & LLM"]
+        LE[LocalEmbedding<br/>BGE-M3]
+        LL[LocalLLM<br/>GGUF/HF]
+    end
+    
+    subgraph Query["Query Processing"]
+        PL[Planner]
+        DSL[DSL Parser]
+        ALG[Algorithms<br/>BFS/Dijkstra/A*]
+    end
+    
+    subgraph Viz["Visualization"]
+        VZ[PyVis Export]
+    end
+    
+    IS --> OM
+    IA --> OM
+    MS --> OM
+    
+    OM --> VS
+    OM --> GS
+    OM --> EI
+    OM --> NV
+    OM --> SM
+    OM --> LE
+    OM --> LL
+    
+    PL --> VS
+    PL --> GS
+    PL --> LE
+    PL --> ALG
+    DSL --> PL
+    
+    VZ --> GS
+```
+
+---
+
+## File-by-File Architecture
+
+### 1. [memory.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py) - Core Orchestrator (1604 lines)
+
+**Class: [OfflineMemory](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#17-1603)** - Main entry point for all memory operations.
+
+| Method | Purpose | Dependencies |
+|--------|---------|--------------|
+| [__init__()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_llm.py#21-46) | Initialize all storage components | [LocalVectorStore](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py#23-219), [GraphStore](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#25-761), [EntityIndex](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/entity_index.py#15-90), [LocalEmbedding](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#11-425), [LocalLLM](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_llm.py#20-381) |
+| [add()](file:///c:/Users/abhik/Downloads/Memory_Folder/LLM_Style/profile_index.py#477-481) | Store memory to FAISS + Graph | [_index_entities_and_graph()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#76-508), `vectors.add()` |
+| [search()](file:///c:/Users/abhik/Downloads/Memory_Folder/LLM_Style/profile_index.py#254-271) | Hybrid retrieval (vector + graph + rerank) | `vectors.search()`, `graph.k_hop()`, [traverse()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1096-1267), `embedder.graph_enhanced_rerank_m3()` |
+| [traverse()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1096-1267) | A* graph pathfinding | `graph.neighbors()`, possessive chain parsing |
+| [update()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1469-1488) | Update existing memory | `vectors.update()` |
+| [delete()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1489-1501) | Remove memory and relations | `vectors.delete()`, `graph.delete_by_memory_id()` |
+| [delete_by_query()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1503-1568) | Delete memories matching query | [search()](file:///c:/Users/abhik/Downloads/Memory_Folder/LLM_Style/profile_index.py#254-271), [delete()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1489-1501) |
+| [history()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1589-1591) | Get memory change history | `db.get_history()` |
+| [rebuild_vector_index()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1593-1603) | Rebuild FAISS from docstore | `vectors.rebuild_from_docstore()` |
+
+**Private Methods:**
+
+| Method | Purpose |
+|--------|---------|
+| [_index_entities_and_graph()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#76-508) | Extract entities via regex/LLM, create graph edges |
+| [_merge_similar_entities_and_relationships()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#509-589) | Merge similar entities by embedding cosine similarity |
+| [_update_faiss_entity_references()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#590-631) | Update FAISS payloads when entities merge |
+| [_make_payload()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#64-75) | Create vector payload with metadata |
+| [_cache_neighbors()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#52-62) | LRU cache for graph neighbor lookups |
+| [build_comprehensive_graph_context()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1268-1468) | Build rich context for reranking |
+
+---
+
+### 2. [graph_store.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py) - SQLite Property Graph (762 lines)
+
+**Class: [GraphStore](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#25-761)** - SQLite-backed graph with nodes and edges.
+
+**Schema:**
+```sql
+nodes(id, name, label, props, cluster_id, created_at, updated_at)
+edges(source, relationship, destination, source_id, destination_id, memory_id, weight, created_at, updated_at)
+edge_props(source, relationship, destination, key, value)
+```
+
+| Method | Purpose |
+|--------|---------|
+| [add(rel)](file:///c:/Users/abhik/Downloads/Memory_Folder/LLM_Style/profile_index.py#477-481) | Insert edge |
+| [upsert(rel)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#162-170) | Insert or update edge |
+| [delete(src, rel, dst)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1489-1501) | Remove specific edge |
+| [delete_by_memory_id(mid)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#189-194) | Remove all edges for a memory |
+| [neighbors(entity, direction, limit)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#496-534) | Get 1-hop neighbors |
+| [k_hop(entity, k, limit_per_hop)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#535-551) | Multi-hop BFS expansion |
+| [query_edges(relationship, source, destination)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#413-441) | Filter edges |
+| [query_nodes(limit)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#554-577) | Get all nodes |
+| [find_similar_entities(name, threshold)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#582-626) | String similarity search |
+| [merge_entities(source, target)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#663-728) | Merge two entities |
+| [merge_relationships(source, target)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#729-761) | Merge relationship types |
+| [get_edge_weight(a, b)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#292-308) | Get edge weight |
+| [set_edge_prop(src, rel, dst, key, val)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#443-463) | Set edge property |
+| [get_edge_prop(src, rel, dst, key)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#464-473) | Get edge property |
+| [upsert_node()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#210-221) | Create/update node |
+| [ensure_node()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#354-368) | Get or create node |
+| [recompute_clusters()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#319-352) | Union-find clustering |
+
+**Data Class: [Relation](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#14-23)**
+```python
+@dataclass
+class Relation:
+    source: str
+    relationship: str
+    destination: str
+    created_at: str
+    updated_at: str
+    weight: float = 1.0
+    memory_id: str | None = None
+```
+
+---
+
+### 3. [vector_store.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py) - FAISS Vector Store (220 lines)
+
+**Class: [LocalVectorStore](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py#23-219)** - FAISS-backed dense vector index.
+
+| Method | Purpose |
+|--------|---------|
+| [add(vectors, payloads, ids)](file:///c:/Users/abhik/Downloads/Memory_Folder/LLM_Style/profile_index.py#477-481) | Add vectors with metadata |
+| [update(id, vector, payload)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1469-1488) | Update existing vector |
+| [delete(id)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1489-1501) | Remove vector |
+| [get(id)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py#132-137) | Get vector record |
+| [search(query_vec, limit, filters)](file:///c:/Users/abhik/Downloads/Memory_Folder/LLM_Style/profile_index.py#254-271) | Similarity search |
+| [list(limit)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py#138-143) | List all IDs |
+| [items()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/node_vectors.py#34-36) | Iterator over (id, payload) |
+| [rebuild_from_docstore()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py#196-219) | Rebuild index from stored payloads |
+| [reset_index()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py#188-195) | Clear and recreate index |
+
+**Persistence:** `faiss.index`, `id_map.pkl`, `docstore.pkl`
+
+---
+
+### 4. [local_embedding.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py) - BGE-M3 Embeddings (426 lines)
+
+**Class: [LocalEmbedding](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#11-425)** - Multi-modal embedding using BGE-M3.
+
+| Method | Purpose | Output |
+|--------|---------|--------|
+| [embed(text)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#34-46) | Single text → dense vector | `List[float]` (1024-dim) |
+| [embed_many(texts)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#75-80) | Batch embedding | `List[List[float]]` |
+| [embed_with_lexical(texts)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#47-74) | Dense + sparse (BM25) | `{"dense": [...], "lexical": [...]}` |
+| [lexical_score(q_lex, d_lex)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#81-87) | BM25-like matching score | `float` |
+| [pair_scores_m3(pairs)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#94-107) | Dense/Sparse/ColBERT scores | `Dict[str, List[float]]` |
+| [advanced_rerank_m3(query, docs)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#108-146) | Multi-fusion reranking | `List[Dict]` with breakdown |
+| [graph_enhanced_rerank_m3(query, memories, contexts)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#254-401) | Graph-aware reranking | `List[Dict]` with graph boosts |
+
+**Scoring Strategies:**
+- Dense (semantic similarity)
+- Sparse (BM25-like lexical)
+- ColBERT (fine-grained token matching)
+- Fusion: Linear, Geometric, Harmonic, Max
+
+---
+
+### 5. [entity_index.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/entity_index.py) - Entity-Memory Mapping (91 lines)
+
+**Class: [EntityIndex](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/entity_index.py#15-90)** - SQLite index linking entities to memories.
+
+**Schema:**
+```sql
+entities(entity TEXT PRIMARY KEY)
+aliases(alias TEXT PRIMARY KEY, canonical TEXT)
+memory_entities(memory_id TEXT, entity TEXT)
+```
+
+| Method | Purpose |
+|--------|---------|
+| [add_memory_entities(mid, text, extra)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/entity_index.py#55-65) | Extract & store entities |
+| [entities_for_memory(mid)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/entity_index.py#66-71) | Get entities linked to memory |
+| [memories_for_entity(entity)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/entity_index.py#72-77) | Get memories mentioning entity |
+| [add_alias(alias, canonical)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/entity_index.py#78-83) | Create alias mapping |
+| [resolve(name)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/entity_index.py#84-90) | Resolve alias to canonical |
+
+**Entity Pattern:** `r"\b([A-Z][a-zA-Z0-9_\-]+)\b"` (proper-case words)
+
+---
+
+### 6. [local_llm.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_llm.py) - Local LLM Backend (380 lines)
+
+**Class: [LocalLLM](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_llm.py#20-381)** - Unified interface for GGUF and HuggingFace models.
+
+| Method | Purpose |
+|--------|---------|
+| [generate(prompt)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_llm.py#155-176) | One-shot generation |
+| [generate_messages(messages)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_llm.py#177-201) | Chat completion |
+| [generate_messages_stream(messages)](file:///c:/Users/abhik/Downloads/Memory_Folder/server_llm.py#122-159) | Streaming chat |
+
+**Backends:**
+- **GGUF** (`llama-cpp-python`) - Quantized models
+- **Transformers** (HuggingFace) - Standard models
+
+**Message Formatting:** Llama 3.1 Instruct format with special tokens.
+
+---
+
+### 7. [local_config.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py) - Configuration (185 lines)
+
+**Configuration Classes:**
+
+| Class | Purpose | Key Fields |
+|-------|---------|------------|
+| [LocalLLMConfig](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py#13-28) | LLM settings | [model_path](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#402-425), [backend](file:///c:/Users/abhik/Downloads/Memory_Folder/interface/app.py#306-330), `max_new_tokens` |
+| [LocalEmbedderConfig](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py#30-37) | Embedder settings | [model_path](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py#402-425) (bge-m3), `embedding_dims` (1024) |
+| [LocalVectorStoreConfig](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py#50-57) | FAISS settings | [path](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py#52-56), `index_type` (HNSW), `distance_strategy` |
+| [LocalGraphConfig](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py#59-61) | Graph DB path | `db_path` (graph.db) |
+| [EntityIndexConfig](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py#63-65) | Entity DB path | `db_path` (entity_index.db) |
+| [RetrievalConfig](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py#83-93) | Search params | `initial_top_k`, `final_top_k`, `scoring` weights |
+| [RerankerConfig](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py#95-101) | Reranker params | [top_k](file:///c:/Users/abhik/Downloads/Memory_Folder/LLM_Style/profile_index.py#1195-1197), `max_passage_length`, `enabled` |
+| [ScoringWeights](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py#75-81) | Hybrid scoring | `w_similarity`, `w_graph`, `w_recency`, `w_evidence` |
+| [OfflineMemoryConfig](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py#112-184) | Master config | Aggregates all above |
+
+---
+
+### 8. [storage.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/storage.py) - History Management (219 lines)
+
+**Class: [SQLiteManager](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/storage.py#10-219)** - Memory change history.
+
+| Method | Purpose |
+|--------|---------|
+| [add_history(mid, old, new, event)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/storage.py#126-168) | Log memory change |
+| [get_history(mid)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/storage.py#169-198) | Get change log |
+| [reset()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/storage.py#199-211) | Clear history |
+
+**Schema:**
+```sql
+history(id, memory_id, old_memory, new_memory, event, created_at, updated_at, is_deleted, actor_id, role)
+```
+
+---
+
+### 9. [algorithms.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/algorithms.py) - Graph Algorithms (91 lines)
+
+| Function | Purpose |
+|----------|---------|
+| [shortest_path(graph, start, goal, max_depth)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/algorithms.py#9-33) | BFS shortest path |
+| [dijkstra_shortest_path(graph, start, goal)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/algorithms.py#55-90) | Weighted Dijkstra |
+| [path_to_relations(graph, path)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/algorithms.py#35-53) | Convert node path to edges |
+
+---
+
+### 10. [planner.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/planner.py) - DSL Query Executor (103 lines)
+
+**Class: [Planner](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/planner.py#13-102)** - Executes parsed DSL queries.
+
+| Method | Purpose |
+|--------|---------|
+| [execute(query)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/planner.py#20-102) | Run query against graph+vectors |
+
+**Query Flow:**
+1. Vector prefilter via `SIMILAR()` clause
+2. Graph expansion by label/name
+3. Property filter (`WHERE`)
+4. Shortest path if multi-hop
+5. Return matching rows
+
+---
+
+### 11. [dsl.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/dsl.py) - Query DSL Parser (144 lines)
+
+**Data Classes:**
+- [NodePat](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/dsl.py#8-13): Node pattern [(var:Label {props})](file:///c:/Users/abhik/Downloads/Memory_Folder/LLM_Style/profile_index.py#477-481)
+- [RelPat](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/dsl.py#15-21): Relationship pattern `-[:TYPE*min..max]->`
+- [MatchPattern](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/dsl.py#23-28): Full match clause
+- [WherePredicate](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/dsl.py#30-34): WHERE conditions
+- [Query](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/dsl.py#36-42): Complete parsed query
+
+| Function | Purpose |
+|----------|---------|
+| [parse(query)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/dsl.py#108-143) | Parse Cypher-like DSL to [Query](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/dsl.py#36-42) |
+
+**DSL Syntax:**
+```cypher
+MATCH (a:Person)-[:FRIEND*1..3]->(b:Person)
+WHERE a.name='Alice' AND SIMILAR(b, 'engineer', 10, 0.5)
+RETURN a, b LIMIT 25
+```
+
+---
+
+### 12. [node_vectors.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/node_vectors.py) - Node Vector Index (48 lines)
+
+**Class: [NodeVectorIndex](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/node_vectors.py#9-47)** - Separate FAISS index for graph nodes.
+
+| Method | Purpose |
+|--------|---------|
+| [upsert(node_id, vector, payload)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py#162-170) | Store node embedding |
+| [search(vector, limit)](file:///c:/Users/abhik/Downloads/Memory_Folder/LLM_Style/profile_index.py#254-271) | Find similar nodes |
+| [delete(node_id)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py#1489-1501) | Remove node vector |
+| [get(node_id)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py#132-137) | Get node payload |
+
+Used for fast graph node similarity search.
+
+---
+
+### 13. [visualize.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/visualize.py) - Graph Visualization (274 lines)
+
+| Function | Purpose |
+|----------|---------|
+| [export_pyvis(graph, nodes, edges, out_dir)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/visualize.py#10-272) | Generate interactive HTML graph |
+
+---
+
+### 14. [memory_system.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory_system.py) - Alternative Entry Point (1264 lines)
+
+Standalone CLI with similar functionality to [integrated_system.py](file:///c:/Users/abhik/Downloads/Memory_Folder/integrated_system.py).
+
+| Function | Purpose |
+|----------|---------|
+| [optimize_memory_search()](file:///c:/Users/abhik/Downloads/Memory_Folder/integrated_system.py#205-213) | Optimized hybrid search |
+| [_get_memory_context()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory_system.py#108-177) | Build augmentation context |
+| [_semantic_query_expansion()](file:///c:/Users/abhik/Downloads/Memory_Folder/interface/app.py#1012-1057) | Expand query with synonyms |
+| [_adaptive_search_strategy()](file:///c:/Users/abhik/Downloads/Memory_Folder/interface/app.py#1059-1122) | Query-dependent params |
+| [_multi_hop_reasoning()](file:///c:/Users/abhik/Downloads/Memory_Folder/interface/app.py#1124-1190) | Chain-of-thought retrieval |
+| [parse_action()](file:///c:/Users/abhik/Downloads/Memory_Folder/integrated_system.py#865-890) | Parse @commands |
+| [main()](file:///c:/Users/abhik/Downloads/Memory_Folder/interface/app.py#1478-2142) | CLI entry point |
+
+---
+
+### 15. [utils.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/utils.py) - Utilities (25 lines)
+
+| Function | Purpose |
+|----------|---------|
+| [utc_now_iso()](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/utils.py#8-10) | Current UTC timestamp |
+| [md5_hash(text)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/utils.py#12-14) | Text hash for dedup |
+| [merge_texts(a, b)](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/utils.py#16-24) | Combine unique tokens |
+
+---
+
+## Data Flow Diagrams
+
+### Storage Flow (`@store`)
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant OM as OfflineMemory
+    participant LE as LocalEmbedding
+    participant VS as LocalVectorStore
+    participant GS as GraphStore
+    participant EI as EntityIndex
+    participant LL as LocalLLM
+    
+    User->>OM: @store "Alice is Bob's friend"
+    OM->>LE: embed(text)
+    LE-->>OM: vector [1024-dim]
+    
+    OM->>OM: _index_entities_and_graph()
+    OM->>LL: Extract relationships (LLM)
+    LL-->>OM: [ALICE, FRIEND, BOB]
+    
+    OM->>GS: upsert_edge_by_names(ALICE, FRIEND, BOB, memory_id)
+    OM->>EI: add_memory_entities(memory_id, [ALICE, BOB])
+    OM->>VS: add(vector, payload, memory_id)
+    
+    OM-->>User: {memory_id, entities, relations}
+```
+
+### Retrieval Flow (`@remember`)
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant OM as OfflineMemory
+    participant LE as LocalEmbedding
+    participant VS as LocalVectorStore
+    participant GS as GraphStore
+    participant EI as EntityIndex
+    
+    User->>OM: @remember "Who is Alice's friend?"
+    
+    Note over OM: Step 1: Vector Search
+    OM->>LE: embed(query)
+    LE-->>OM: query_vector
+    OM->>VS: search(query_vector, limit=50)
+    VS-->>OM: vector_hits [(id, score, payload), ...]
+    
+    Note over OM: Step 2: Graph Search
+    OM->>EI: Extract entities from query
+    EI-->>OM: [ALICE]
+    OM->>GS: k_hop(ALICE, k=4)
+    GS-->>OM: graph_relations
+    OM->>OM: traverse(query) - A* search
+    
+    Note over OM: Step 3: Union & Dedup
+    OM->>OM: candidate_map = vector_hits ∪ graph_hits
+    
+    Note over OM: Step 4: Hybrid Scoring
+    OM->>OM: score = w_sim*sim + w_graph*overlap + w_recency*rec
+    
+    Note over OM: Step 5: Reranking
+    OM->>LE: graph_enhanced_rerank_m3(query, candidates, contexts)
+    LE-->>OM: reranked_results
+    
+    OM-->>User: {results: [...], relations: [...]}
+```
+
+### Normal Chat Flow (Graph-Only)
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant IS as integrated_system.py
+    participant OM as OfflineMemory
+    participant GS as GraphStore
+    participant EI as EntityIndex
+    participant LE as LocalEmbedding
+    
+    User->>IS: "Tell me about Alice"
+    
+    Note over IS: Graph-Only Search
+    IS->>OM: graph_only_search(query)
+    
+    OM->>GS: k_hop(ALICE, k=4)
+    GS-->>OM: graph_relations
+    
+    OM->>OM: traverse(query) - A* paths
+    
+    OM->>EI: memories_for_entity(nodes)
+    EI-->>OM: memory_ids
+    
+    Note over OM: Rerank graph results
+    OM->>LE: advanced_rerank_m3(query, memories)
+    LE-->>OM: reranked
+    
+    IS-->>User: context → LLM response
+```
+
+---
+
+## Component Relationships
+
+```mermaid
+classDiagram
+    class OfflineMemory {
+        +config: OfflineMemoryConfig
+        +embedder: LocalEmbedding
+        +vectors: LocalVectorStore
+        +graph: GraphStore
+        +entities: EntityIndex
+        +node_vectors: NodeVectorIndex
+        +db: SQLiteManager
+        +llm: LocalLLM
+        +add()
+        +search()
+        +traverse()
+        +update()
+        +delete()
+    }
+    
+    class LocalVectorStore {
+        +index: faiss.Index
+        +docstore: Dict
+        +add()
+        +search()
+        +delete()
+    }
+    
+    class GraphStore {
+        +conn: sqlite3.Connection
+        +add()
+        +neighbors()
+        +k_hop()
+        +query_edges()
+        +merge_entities()
+    }
+    
+    class EntityIndex {
+        +conn: sqlite3.Connection
+        +add_memory_entities()
+        +memories_for_entity()
+        +entities_for_memory()
+    }
+    
+    class LocalEmbedding {
+        +model: BGEM3FlagModel
+        +embed()
+        +embed_many()
+        +advanced_rerank_m3()
+        +graph_enhanced_rerank_m3()
+    }
+    
+    class LocalLLM {
+        +model: AutoModel/Llama
+        +generate_messages()
+        +generate_messages_stream()
+    }
+    
+    class Planner {
+        +graph: GraphStore
+        +vectors: LocalVectorStore
+        +embed: LocalEmbedding
+        +execute()
+    }
+    
+    OfflineMemory --> LocalVectorStore
+    OfflineMemory --> GraphStore
+    OfflineMemory --> EntityIndex
+    OfflineMemory --> LocalEmbedding
+    OfflineMemory --> LocalLLM
+    OfflineMemory --> NodeVectorIndex
+    OfflineMemory --> SQLiteManager
+    
+    Planner --> GraphStore
+    Planner --> LocalVectorStore
+    Planner --> LocalEmbedding
+    
+    NodeVectorIndex --> LocalVectorStore
+```
+
+---
+
+## File Size Summary
+
+| File | Lines | Purpose |
+|------|-------|---------|
+| [memory.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory.py) | 1604 | Core orchestration |
+| [memory_system.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/memory_system.py) | 1264 | Alternative CLI |
+| [graph_store.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/graph_store.py) | 762 | Graph database |
+| [local_embedding.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_embedding.py) | 426 | BGE-M3 embeddings |
+| [local_llm.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_llm.py) | 380 | LLM backend |
+| [visualize.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/visualize.py) | 274 | PyVis export |
+| [vector_store.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/vector_store.py) | 220 | FAISS storage |
+| [storage.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/storage.py) | 219 | History DB |
+| [local_config.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/local_config.py) | 185 | Configuration |
+| [dsl.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/dsl.py) | 144 | Query parser |
+| [planner.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/planner.py) | 103 | DSL executor |
+| [algorithms.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/algorithms.py) | 91 | Graph algorithms |
+| [entity_index.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/entity_index.py) | 91 | Entity-memory index |
+| [node_vectors.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/node_vectors.py) | 48 | Node embeddings |
+| [utils.py](file:///c:/Users/abhik/Downloads/Memory_Folder/Amem/utils.py) | 25 | Utilities |
+| **Total** | **~5,836** | |
+
+---
+
+## Key Design Decisions
+
+1. **Unified Memory ID**: Same UUID used across FAISS, Graph, and EntityIndex
+2. **Hybrid Scoring**: Weighted combination of vector similarity, graph overlap, recency, evidence
+3. **BGE-M3 Multi-Modal**: Dense + Sparse + ColBERT for comprehensive matching
+4. **A* Traversal**: Possessive chain parsing for relational queries ("Alice's friend's father")
+5. **Graph-Enhanced Reranking**: Relationship context injected into BGE-M3 scoring
+6. **SQLite Everything**: Nodes, edges, entities, history all in SQLite for portability
+7. **Offline-First**: All models run locally (GGUF, HuggingFace)

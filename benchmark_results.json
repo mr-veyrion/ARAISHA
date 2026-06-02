@@ -1,0 +1,2519 @@
+{
+  "faithfulness": {
+    "passed": 35,
+    "total": 50,
+    "details": [
+      {
+        "query": "What color does Abhishek like?",
+        "expected": [
+          "black",
+          "dark"
+        ],
+        "retrieved": "None",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Where does Riya live?",
+        "expected": [
+          "Bangalore"
+        ],
+        "retrieved": "Riya lives in Bangalore. She moved there for work. | Riya loves street photography. She captures urban life beautifully. | Riya works with Aarav at his startup. | Riya works as a UX designer at a tech",
+        "passed": true,
+        "judge_reason": "Contains explicit statement that Riya lives in Bangalore."
+      },
+      {
+        "query": "What does Karan know?",
+        "expected": [
+          "SQL",
+          "Power BI"
+        ],
+        "retrieved": "Karan is proficient in Power BI for data visualization. | Karan knows SQL very well. He uses it daily. | Karan prefers working with structured datasets. | Karan's brother is Vikram. He works in financ",
+        "passed": true,
+        "judge_reason": "Contains explicit mentions of SQL and Power BI proficiency."
+      },
+      {
+        "query": "What does Meera study?",
+        "expected": [
+          "Psychology"
+        ],
+        "retrieved": "Meera prefers quiet cafés for studying. | Meera studies Psychology at college. | Meera's mentor is Dr. Sharma. She is a renowned psychologist. | Meera is interested in cognitive behavior and therapy. ",
+        "passed": true,
+        "judge_reason": "Directly states Meera studies Psychology."
+      },
+      {
+        "query": "What team does Karan support?",
+        "expected": [
+          "Manchester United"
+        ],
+        "retrieved": "Karan supports Manchester United. He's been a fan since childhood. | Karan prefers working with structured datasets. | Karan is proficient in Power BI for data visualization. | Karan likes football. H",
+        "passed": true,
+        "judge_reason": "Contains explicit statement that Karan supports Manchester United."
+      },
+      {
+        "query": "What is Abhishek's favorite programming language?",
+        "expected": [
+          "Python"
+        ],
+        "retrieved": "None",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "What operating system does Abhishek use?",
+        "expected": [
+          "Linux"
+        ],
+        "retrieved": "Riya prefers the iOS ecosystem over Android.",
+        "passed": false,
+        "judge_reason": "Retrieved memory is unrelated to Abhishek's operating system."
+      },
+      {
+        "query": "What device does Riya use?",
+        "expected": [
+          "iPhone"
+        ],
+        "retrieved": "Riya uses an iPhone for all her photography work. | Riya works as a UX designer at a tech startup. | Riya works with Aarav at his startup. | Riya believes in design empathy. Users first. | Riya is int",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of iPhone usage."
+      },
+      {
+        "query": "Where does Aarav live?",
+        "expected": [
+          "Mumbai"
+        ],
+        "retrieved": "Aarav lives in Mumbai. He runs his business from there. | Aarav's company is called TechNova. It focuses on AI solutions. | Aarav uses a MacBook for all his work. | Aarav works as a startup founder. H",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of Mumbai as Aarav's residence."
+      },
+      {
+        "query": "What does Meera practice daily?",
+        "expected": [
+          "mindfulness",
+          "meditation"
+        ],
+        "retrieved": "Meera practices mindfulness meditation daily. | Meera likes journaling. She writes every night. | Meera's mentor is Dr. Sharma. She is a renowned psychologist. | Meera lives in Pune. She loves the wea",
+        "passed": true,
+        "judge_reason": "Contains correct information about mindfulness and meditation practice."
+      },
+      {
+        "query": "What is my wife's name?",
+        "expected": [
+          "Aria"
+        ],
+        "retrieved": "I sleep late, usually around 2 AM. | Yesterday I had a meeting with the team about the project roadmap.",
+        "passed": false,
+        "judge_reason": "Retrieved memories are unrelated to wife's name."
+      },
+      {
+        "query": "What does Aria love?",
+        "expected": [
+          "painting",
+          "watercolors",
+          "landscapes"
+        ],
+        "retrieved": "Aria loves painting landscapes. She uses watercolors. | Riya works with Aarav at his startup. | Riya likes pastel colors in her designs. | Meera likes journaling. She writes every night. | Meera is in",
+        "passed": true,
+        "judge_reason": "Contains all expected information: painting, watercolors, landscapes."
+      },
+      {
+        "query": "What is Aarav's company called?",
+        "expected": [
+          "TechNova"
+        ],
+        "retrieved": "Aarav works as a startup founder. He built his company from scratch. | Aarav uses a MacBook for all his work. | Aarav lives in Mumbai. He runs his business from there. | Aarav invests in early-stage t",
+        "passed": false,
+        "judge_reason": "Does not mention company name or direct link to TechNova."
+      },
+      {
+        "query": "Who is Meera's mentor?",
+        "expected": [
+          "Sharma",
+          "Dr. Sharma"
+        ],
+        "retrieved": "Meera's mentor is Dr. Sharma. She is a renowned psychologist. | Meera lives in Pune. She loves the weather there. | Meera likes journaling. She writes every night.",
+        "passed": true,
+        "judge_reason": "Contains correct mentor name: Dr. Sharma."
+      },
+      {
+        "query": "What did Karan's brother Vikram do?",
+        "expected": [
+          "finance",
+          "Singapore"
+        ],
+        "retrieved": "Karan's brother is Vikram. He works in finance.",
+        "passed": true,
+        "judge_reason": "Contains relevant info about Vikram's finance job."
+      },
+      {
+        "query": "What coffee do I drink?",
+        "expected": [
+          "black",
+          "no sugar"
+        ],
+        "retrieved": "Meera prefers quiet cafés for studying.",
+        "passed": false,
+        "judge_reason": "Retrieved memory is unrelated to coffee preferences."
+      },
+      {
+        "query": "What music do I listen to while coding?",
+        "expected": [
+          "lo-fi"
+        ],
+        "retrieved": "I listen to lo-fi music while coding. | Meera prefers quiet cafés for studying.",
+        "passed": true,
+        "judge_reason": "Contains expected information about lo-fi music for coding."
+      },
+      {
+        "query": "When do I usually sleep?",
+        "expected": [
+          "2 AM",
+          "late"
+        ],
+        "retrieved": "Meera likes journaling. She writes every night. | I sleep late, usually around 2 AM. | Meera prefers quiet cafés for studying.",
+        "passed": true,
+        "judge_reason": "Contains exact match: \"I sleep late, usually around 2 AM.\""
+      },
+      {
+        "query": "What editor do I use?",
+        "expected": [
+          "VSCode"
+        ],
+        "retrieved": "None",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "What genre of movies do I like?",
+        "expected": [
+          "science fiction",
+          "sci-fi"
+        ],
+        "retrieved": "My favorite movie genre is science fiction.",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of science fiction genre."
+      },
+      {
+        "query": "What does Riya work as?",
+        "expected": [
+          "UX designer"
+        ],
+        "retrieved": "Riya lives in Bangalore. She moved there for work. | Riya works as a UX designer at a tech startup. | Riya works with Aarav at his startup. | Riya uses an iPhone for all her photography work. | Riya b",
+        "passed": true,
+        "judge_reason": "Contains explicit statement that Riya works as a UX designer."
+      },
+      {
+        "query": "What is Aarav interested in?",
+        "expected": [
+          "venture capital",
+          "funding"
+        ],
+        "retrieved": "Aarav's company is called TechNova. It focuses on AI solutions. | Aarav lives in Mumbai. He runs his business from there. | Aarav uses a MacBook for all his work. | Aarav works as a startup founder. H",
+        "passed": false,
+        "judge_reason": "Does not mention venture capital or funding interests."
+      },
+      {
+        "query": "What does Meera like doing?",
+        "expected": [
+          "journaling",
+          "writes"
+        ],
+        "retrieved": "Meera likes journaling. She writes every night. | Meera lives in Pune. She loves the weather there. | Meera's mentor is Dr. Sharma. She is a renowned psychologist. | Meera is interested in cognitive b",
+        "passed": true,
+        "judge_reason": "Contains direct mention of journaling and writing."
+      },
+      {
+        "query": "What sport does Karan like?",
+        "expected": [
+          "football"
+        ],
+        "retrieved": "Karan likes football. He plays every weekend. | Karan supports Manchester United. He's been a fan since childhood. | Karan prefers working with structured datasets. | Karan lives in Delhi. He grew up ",
+        "passed": true,
+        "judge_reason": "Contains direct statement that Karan likes football."
+      },
+      {
+        "query": "What ecosystem does Riya prefer?",
+        "expected": [
+          "iOS"
+        ],
+        "retrieved": "Riya prefers the iOS ecosystem over Android. | Riya dislikes cluttered layouts. She values whitespace. | Riya believes in design empathy. Users first. | Riya is interested in human-centered design pri",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of Riya's preference for iOS ecosystem."
+      },
+      {
+        "query": "What kind of UI do I prefer?",
+        "expected": [
+          "minimal",
+          "clean"
+        ],
+        "retrieved": "My favorite movie genre is science fiction. | I prefer minimal UI designs. Clean interfaces are the best. | Riya believes in design empathy. Users first.",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of minimal and clean UI preferences."
+      },
+      {
+        "query": "What am I working on?",
+        "expected": [
+          "After Human",
+          "digital immortality"
+        ],
+        "retrieved": "Karan works as a data analyst at a consulting firm.",
+        "passed": false,
+        "judge_reason": "Retrieved memory does not mention digital immortality or related topic."
+      },
+      {
+        "query": "What kind of places do I prefer?",
+        "expected": [
+          "quiet"
+        ],
+        "retrieved": "My favorite movie genre is science fiction. | I dislike loud environments. I prefer quiet places to work.",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of preferring quiet places."
+      },
+      {
+        "query": "What does Karan avoid?",
+        "expected": [
+          "manual data entry"
+        ],
+        "retrieved": "Karan dislikes manual data entry. He automates everything. | Karan prefers working with structured datasets.",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of avoiding manual data entry."
+      },
+      {
+        "query": "What does Meera dislike?",
+        "expected": [
+          "social media",
+          "overload"
+        ],
+        "retrieved": "Meera dislikes social media overload. She limits her screen time.",
+        "passed": true,
+        "judge_reason": "Contains both social media and overload as disliked elements."
+      },
+      {
+        "query": "Who raised funding from Sequoia?",
+        "expected": [
+          "TechNova",
+          "Aarav"
+        ],
+        "retrieved": "None",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "When did I graduate?",
+        "expected": [
+          "2023"
+        ],
+        "retrieved": "I graduated from university in 2023.",
+        "passed": true,
+        "judge_reason": "Contains exact expected graduation year."
+      },
+      {
+        "query": "When did Aarav found his company?",
+        "expected": [
+          "2022"
+        ],
+        "retrieved": "Aarav's company is called TechNova. It focuses on AI solutions. | Aarav works as a startup founder. He built his company from scratch. | Aarav founded TechNova in 2022. | Aarav invests in early-stage ",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of founding year 2022."
+      },
+      {
+        "query": "What am I learning recently?",
+        "expected": [
+          "Rust"
+        ],
+        "retrieved": "Meera reads research papers on cognitive psychology.",
+        "passed": false,
+        "judge_reason": "Retrieved memory is unrelated to learning Rust."
+      },
+      {
+        "query": "What kind of work does Aarav prefer?",
+        "expected": [
+          "remote"
+        ],
+        "retrieved": "Aarav prefers remote work. He values flexibility. | Aarav uses a MacBook for all his work. | Aarav's company is called TechNova. It focuses on AI solutions. | Aarav works as a startup founder. He buil",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of remote work preference."
+      },
+      {
+        "query": "What laptop does Aarav use?",
+        "expected": [
+          "MacBook"
+        ],
+        "retrieved": "Aarav uses a MacBook for all his work. | Aarav's company is called TechNova. It focuses on AI solutions. | Aarav works as a startup founder. He built his company from scratch. | Aarav prefers remote w",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of MacBook usage."
+      },
+      {
+        "query": "What does Riya capture in photography?",
+        "expected": [
+          "street",
+          "urban"
+        ],
+        "retrieved": "Riya loves street photography. She captures urban life beautifully. | Riya uses an iPhone for all her photography work. | Riya works as a UX designer at a tech startup. | Riya dislikes cluttered layou",
+        "passed": true,
+        "judge_reason": "Contains expected information about street and urban photography."
+      },
+      {
+        "query": "What does Riya avoid in designs?",
+        "expected": [
+          "dark color",
+          "palettes"
+        ],
+        "retrieved": "Riya avoids using dark color palettes in her designs. | Riya believes in design empathy. Users first. | I collaborate with Riya on design projects. We make a great team. | Riya likes pastel colors in ",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of avoiding dark color palettes."
+      },
+      {
+        "query": "What philosophy do I believe in?",
+        "expected": [
+          "open-source"
+        ],
+        "retrieved": "My favorite movie genre is science fiction. | I believe in open-source philosophy. I contribute to many projects.",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of open-source philosophy."
+      },
+      {
+        "query": "What does Riya value?",
+        "expected": [
+          "whitespace",
+          "empathy"
+        ],
+        "retrieved": "Riya believes in design empathy. Users first. | Riya works with Aarav at his startup. | Riya is interested in human-centered design principles.",
+        "passed": true,
+        "judge_reason": "Contains empathy and user-centric values relevant to Riya's priorities."
+      },
+      {
+        "query": "Where did Vikram move to?",
+        "expected": [
+          "Singapore"
+        ],
+        "retrieved": "Vikram lives in Singapore. He moved there for work.",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of moving to Singapore."
+      },
+      {
+        "query": "What book did Dr. Sharma write?",
+        "expected": [
+          "cognitive therapy"
+        ],
+        "retrieved": "None",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Where did Aria and Riya meet?",
+        "expected": [
+          "art exhibition"
+        ],
+        "retrieved": "Aria and Riya are friends. They met at an art exhibition. | Riya works with Aarav at his startup.",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of meeting at an art exhibition."
+      },
+      {
+        "query": "What datasets does Karan prefer?",
+        "expected": [
+          "structured"
+        ],
+        "retrieved": "Karan prefers working with structured datasets. | Karan dislikes manual data entry. He automates everything. | Karan is proficient in Power BI for data visualization. | Karan works as a data analyst a",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of structured datasets as preferred by Karan."
+      },
+      {
+        "query": "What time did I complete the architecture?",
+        "expected": [
+          "last week"
+        ],
+        "retrieved": "None",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "When did Riya join the startup?",
+        "expected": [
+          "2024"
+        ],
+        "retrieved": "Riya works as a UX designer at a tech startup. | Riya works with Aarav at his startup. | Riya joined the startup in 2024. | Riya believes in design empathy. Users first. | Riya is interested in human-",
+        "passed": true,
+        "judge_reason": "Contains explicit statement of Riya joining in 2024."
+      },
+      {
+        "query": "What books do I read?",
+        "expected": [
+          "philosophy",
+          "technology"
+        ],
+        "retrieved": "Meera prefers quiet cafés for studying. | Meera is interested in cognitive behavior and therapy.",
+        "passed": false,
+        "judge_reason": "Does not contain philosophy or technology topics."
+      },
+      {
+        "query": "How often do I exercise?",
+        "expected": [
+          "three times",
+          "week"
+        ],
+        "retrieved": "Meera practices mindfulness meditation daily. | I exercise three times a week. Running is my favorite. | Karan likes football. He plays every weekend. | Meera likes journaling. She writes every night.",
+        "passed": true,
+        "judge_reason": "Contains exact match for exercise frequency."
+      },
+      {
+        "query": "What kind of running do I do?",
+        "expected": [
+          "running",
+          "exercise"
+        ],
+        "retrieved": "My favorite movie genre is science fiction.",
+        "passed": false,
+        "judge_reason": "Retrieved memory is unrelated to running or exercise."
+      },
+      {
+        "query": "What does TechNova focus on?",
+        "expected": [
+          "AI solutions"
+        ],
+        "retrieved": "Aarav's company is called TechNova. It focuses on AI solutions. | Aarav founded TechNova in 2022. | TechNova raised funding from Sequoia Capital. | I avoid vendor lock-in when choosing technologies.",
+        "passed": true,
+        "judge_reason": "Contains explicit mention of TechNova's focus on AI solutions."
+      }
+    ]
+  },
+  "retrieval": {
+    "passed": 31,
+    "total": 50,
+    "details": [
+      {
+        "query": "Who likes black color?",
+        "expected": [
+          "Abhishek",
+          "I",
+          "my"
+        ],
+        "retrieved_count": 3,
+        "passed": true,
+        "judge_reason": "Contains direct references to liking black color."
+      },
+      {
+        "query": "Who lives in Bangalore?",
+        "expected": [
+          "Riya"
+        ],
+        "retrieved_count": 0,
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who prefers quiet environments?",
+        "expected": [
+          "Abhishek",
+          "Meera",
+          "I"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Contains explicit preference for quiet environments."
+      },
+      {
+        "query": "Who dislikes clutter?",
+        "expected": [
+          "Riya"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Riya dislikes cluttered layouts, directly matching the expected information."
+      },
+      {
+        "query": "Who knows Python?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Contains self-reference and confirms knowledge of Python."
+      },
+      {
+        "query": "Who uses Apple devices?",
+        "expected": [
+          "Riya",
+          "iPhone"
+        ],
+        "retrieved_count": 1,
+        "passed": false,
+        "judge_reason": "Retrieved memory unrelated to Apple device users or Riya."
+      },
+      {
+        "query": "Who works as a designer?",
+        "expected": [
+          "Riya"
+        ],
+        "retrieved_count": 6,
+        "passed": true,
+        "judge_reason": "Riya is explicitly mentioned as being involved in design."
+      },
+      {
+        "query": "Who is interested in AI?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 0,
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who practices mindfulness?",
+        "expected": [
+          "Meera"
+        ],
+        "retrieved_count": 3,
+        "passed": false,
+        "judge_reason": "Only mentions Meera's interest in therapy, not mindfulness practice."
+      },
+      {
+        "query": "Who invests in startups?",
+        "expected": [
+          "Aarav"
+        ],
+        "retrieved_count": 1,
+        "passed": false,
+        "judge_reason": "Retrieved memory mentions investors but not Aarav."
+      },
+      {
+        "query": "Who uses Linux?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 3,
+        "passed": true,
+        "judge_reason": "Contains explicit mention of using Linux."
+      },
+      {
+        "query": "Who prefers dark mode?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Contains explicit statement of dark mode preference."
+      },
+      {
+        "query": "Who plays football?",
+        "expected": [
+          "Karan"
+        ],
+        "retrieved_count": 0,
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who studies psychology?",
+        "expected": [
+          "Meera"
+        ],
+        "retrieved_count": 3,
+        "passed": true,
+        "judge_reason": "Meera is directly mentioned and relevant to psychology study."
+      },
+      {
+        "query": "Who uses a MacBook?",
+        "expected": [
+          "Aarav"
+        ],
+        "retrieved_count": 3,
+        "passed": true,
+        "judge_reason": "Contains explicit mention of Aarav using a MacBook."
+      },
+      {
+        "query": "Who attends networking events?",
+        "expected": [
+          "Aarav"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Aarav attends networking events, directly matching the expected information."
+      },
+      {
+        "query": "Who likes street photography?",
+        "expected": [
+          "Riya"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Riya is explicitly mentioned as loving street photography."
+      },
+      {
+        "query": "Who lives in Delhi?",
+        "expected": [
+          "Karan"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Contains expected information that Karan lives in Delhi."
+      },
+      {
+        "query": "Who lives in Pune?",
+        "expected": [
+          "Meera"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Contains expected information that Meera lives in Pune."
+      },
+      {
+        "query": "Who lives in Mumbai?",
+        "expected": [
+          "Aarav"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Contains expected information that Aarav lives in Mumbai."
+      },
+      {
+        "query": "Who supports Manchester United?",
+        "expected": [
+          "Karan"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Contains expected information that Karan supports Manchester United."
+      },
+      {
+        "query": "Who prefers iOS?",
+        "expected": [
+          "Riya"
+        ],
+        "retrieved_count": 1,
+        "passed": false,
+        "judge_reason": "Does not mention who prefers iOS or relate to the query."
+      },
+      {
+        "query": "Who drinks black coffee?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 0,
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who sleeps late?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Contains \"I sleep late,\" matching expected info."
+      },
+      {
+        "query": "Who listens to lo-fi?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Contains self-reference to listening to lo-fi music."
+      },
+      {
+        "query": "Who founded a company?",
+        "expected": [
+          "Aarav"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Aarav is mentioned as the founder of a startup."
+      },
+      {
+        "query": "Who is married to an artist?",
+        "expected": [
+          "Abhishek",
+          "I",
+          "Aria"
+        ],
+        "retrieved_count": 0,
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who avoids vendor lock-in?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Contains expected information about avoiding vendor lock-in."
+      },
+      {
+        "query": "Who contributes to open source?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 0,
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who prefers remote work?",
+        "expected": [
+          "Aarav"
+        ],
+        "retrieved_count": 3,
+        "passed": true,
+        "judge_reason": "Contains explicit statement that Aarav prefers remote work."
+      },
+      {
+        "query": "Who journals every night?",
+        "expected": [
+          "Meera"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Contains direct information that Meera journals every night."
+      },
+      {
+        "query": "Who likes watercolors?",
+        "expected": [
+          "Aria"
+        ],
+        "retrieved_count": 3,
+        "passed": true,
+        "judge_reason": "Aria loves painting landscapes using watercolors."
+      },
+      {
+        "query": "Who works in finance?",
+        "expected": [
+          "Vikram"
+        ],
+        "retrieved_count": 1,
+        "passed": false,
+        "judge_reason": "Does not mention Vikram or finance role."
+      },
+      {
+        "query": "Who is a psychologist?",
+        "expected": [
+          "Sharma",
+          "Dr"
+        ],
+        "retrieved_count": 0,
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who automates data work?",
+        "expected": [
+          "Karan"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Karan is directly mentioned as performing data-related tasks."
+      },
+      {
+        "query": "Who uses Power BI?",
+        "expected": [
+          "Karan"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Karan is directly mentioned as using Power BI."
+      },
+      {
+        "query": "Who values whitespace in design?",
+        "expected": [
+          "Riya"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Contains explicit mention of Riya valuing whitespace."
+      },
+      {
+        "query": "Who reads research papers?",
+        "expected": [
+          "Meera"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Meera is explicitly mentioned as reading research papers."
+      },
+      {
+        "query": "Who follows Y Combinator?",
+        "expected": [
+          "Aarav"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Aarav is explicitly mentioned as following Y Combinator."
+      },
+      {
+        "query": "Who prefers structured data?",
+        "expected": [
+          "Karan"
+        ],
+        "retrieved_count": 1,
+        "passed": true,
+        "judge_reason": "Contains expected information about Karan preferring structured data."
+      },
+      {
+        "query": "Who uses VSCode?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 2,
+        "passed": false,
+        "judge_reason": "Does not mention Abhishek or confirm VSCode usage."
+      },
+      {
+        "query": "Who exercises regularly?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 0,
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who likes running?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 2,
+        "passed": false,
+        "judge_reason": "Retrieved memories are unrelated to running or the people who like it."
+      },
+      {
+        "query": "Who reads philosophy books?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 1,
+        "passed": false,
+        "judge_reason": "Does not mention Abhishek or confirm reading philosophy books."
+      },
+      {
+        "query": "Who likes sci-fi movies?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 1,
+        "passed": false,
+        "judge_reason": "Does not mention Abhishek or I liking sci-fi movies."
+      },
+      {
+        "query": "Who dislikes social media?",
+        "expected": [
+          "Meera"
+        ],
+        "retrieved_count": 1,
+        "passed": false,
+        "judge_reason": "Retrieved memory does not mention social media or Meera."
+      },
+      {
+        "query": "Who limits screen time?",
+        "expected": [
+          "Meera"
+        ],
+        "retrieved_count": 2,
+        "passed": false,
+        "judge_reason": "Retrieved memories are unrelated to screen time or Meera."
+      },
+      {
+        "query": "Who likes pastel colors?",
+        "expected": [
+          "Riya"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Riya likes pastel colors in her designs."
+      },
+      {
+        "query": "Who understands system design?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Contains self-reference to understanding system design."
+      },
+      {
+        "query": "Who is learning Rust?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "retrieved_count": 2,
+        "passed": true,
+        "judge_reason": "Contains information about learning Rust and self-reference."
+      }
+    ]
+  },
+  "reasoning": {
+    "passed": 8,
+    "total": 50,
+    "details": [
+      {
+        "query": "Who collaborates with a UX designer?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "reasoning_path": "Abhishek → COLLABORATES_WITH → Riya (UX designer)",
+        "passed": false,
+        "judge_reason": "Retrieved memories do not mention Abhishek or any collaboration."
+      },
+      {
+        "query": "Who works with a startup founder?",
+        "expected": [
+          "Riya",
+          "Karan"
+        ],
+        "reasoning_path": "Riya/Karan → Aarav (founder)",
+        "passed": false,
+        "judge_reason": "Does not mention Riya or Karan; irrelevant to query."
+      },
+      {
+        "query": "Who is connected to venture capital?",
+        "expected": [
+          "Aarav",
+          "TechNova"
+        ],
+        "reasoning_path": "Aarav directly, TechNova raised from Sequoia",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who collaborates with someone who avoids dark colors?",
+        "expected": [
+          "Abhishek",
+          "I"
+        ],
+        "reasoning_path": "Abhishek → Riya (avoids dark palettes)",
+        "passed": false,
+        "judge_reason": "Retrieved memory unrelated to color preferences or collaboration."
+      },
+      {
+        "query": "Find people connected to tech startups",
+        "expected": [
+          "Aarav",
+          "Riya",
+          "TechNova"
+        ],
+        "reasoning_path": "Via investment/work relationships",
+        "passed": false,
+        "judge_reason": "Only mentions Aarav, not Riya or TechNova."
+      },
+      {
+        "query": "Who knows someone in Singapore?",
+        "expected": [
+          "Karan",
+          "Vikram"
+        ],
+        "reasoning_path": "Karan → Vikram (Singapore)",
+        "passed": false,
+        "judge_reason": "Does not mention Karan, Vikram, or Singapore."
+      },
+      {
+        "query": "Who is connected to Dr. Sharma?",
+        "expected": [
+          "Meera"
+        ],
+        "reasoning_path": "Meera → mentor Dr. Sharma",
+        "passed": false,
+        "judge_reason": "Does not mention Meera or any connection to Dr. Sharma."
+      },
+      {
+        "query": "Who is friends with an artist?",
+        "expected": [
+          "Riya",
+          "Aria"
+        ],
+        "reasoning_path": "Riya → friends → Aria (artist)",
+        "passed": false,
+        "judge_reason": "Retrieved memory unrelated to friends of an artist."
+      },
+      {
+        "query": "Who is connected to TechNova?",
+        "expected": [
+          "Aarav",
+          "Sequoia"
+        ],
+        "reasoning_path": "Aarav → founder, Sequoia → investor",
+        "passed": true,
+        "judge_reason": "Contains Aarav and Sequoia connected to TechNova."
+      },
+      {
+        "query": "Who attended university with someone in Delhi?",
+        "expected": [
+          "Abhishek",
+          "Karan",
+          "I"
+        ],
+        "reasoning_path": "Abhishek → roommates → Karan (Delhi)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who is married to someone who paints?",
+        "expected": [
+          "Abhishek",
+          "I",
+          "Aria"
+        ],
+        "reasoning_path": "Abhishek → wife → Aria (paints)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who works with someone interested in human-centered design?",
+        "expected": [
+          "Aarav",
+          "Riya"
+        ],
+        "reasoning_path": "Aarav → works with → Riya (human-centered design)",
+        "passed": true,
+        "judge_reason": "Riya is mentioned as working with someone interested in human-centered design."
+      },
+      {
+        "query": "Who consults with a company founder?",
+        "expected": [
+          "Karan",
+          "Aarav"
+        ],
+        "reasoning_path": "Karan → consults → Aarav (founder)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who knows someone who wrote a book?",
+        "expected": [
+          "Meera",
+          "Dr. Sharma"
+        ],
+        "reasoning_path": "Meera → mentor → Dr. Sharma (wrote book)",
+        "passed": false,
+        "judge_reason": "Does not mention Meera writing a book or Dr. Sharma."
+      },
+      {
+        "query": "Who is connected to someone who raised funding?",
+        "expected": [
+          "Aarav",
+          "TechNova",
+          "Sequoia"
+        ],
+        "reasoning_path": "TechNova → raised → Sequoia",
+        "passed": false,
+        "judge_reason": "Does not mention Aarav, TechNova, or Sequoia."
+      },
+      {
+        "query": "Who works with an iPhone user?",
+        "expected": [
+          "Aarav",
+          "Riya"
+        ],
+        "reasoning_path": "Aarav → works with → Riya (iPhone)",
+        "passed": true,
+        "judge_reason": "Riya's iOS ecosystem preference implies working with iPhone users."
+      },
+      {
+        "query": "Who is connected to AI solutions?",
+        "expected": [
+          "Aarav",
+          "TechNova",
+          "Abhishek",
+          "I"
+        ],
+        "reasoning_path": "TechNova (AI solutions), Abhishek (AI study)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who knows someone interested in cognitive behavior?",
+        "expected": [
+          "Dr. Sharma",
+          "Meera"
+        ],
+        "reasoning_path": "Meera (cognitive behavior) → mentor → Dr. Sharma",
+        "passed": true,
+        "judge_reason": "Meera is directly mentioned as interested in cognitive behavior."
+      },
+      {
+        "query": "Who is connected to Manchester United fans?",
+        "expected": [
+          "Vikram",
+          "Karan"
+        ],
+        "reasoning_path": "Vikram → brother → Karan (Man Utd)",
+        "passed": true,
+        "judge_reason": "Contains Karan, who is connected to Manchester United fans."
+      },
+      {
+        "query": "Who collaborates on design with someone in Bangalore?",
+        "expected": [
+          "Abhishek",
+          "I",
+          "Riya"
+        ],
+        "reasoning_path": "Abhishek → collaborates → Riya (Bangalore)",
+        "passed": false,
+        "judge_reason": "Does not mention collaboration or individuals in Bangalore."
+      },
+      {
+        "query": "Who is connected to watercolor artists?",
+        "expected": [
+          "Abhishek",
+          "I",
+          "Aria",
+          "Riya"
+        ],
+        "reasoning_path": "Aria (watercolors), connected to Abhishek and Riya",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who has connections in the finance industry?",
+        "expected": [
+          "Karan",
+          "Vikram"
+        ],
+        "reasoning_path": "Vikram (finance) → brother → Karan",
+        "passed": false,
+        "judge_reason": "Does not mention finance industry connections or Vikram."
+      },
+      {
+        "query": "Who knows someone at a startup accelerator?",
+        "expected": [
+          "Aarav"
+        ],
+        "reasoning_path": "Aarav → follows → Y Combinator",
+        "passed": true,
+        "judge_reason": "Aarav is directly mentioned and relevant to startup accelerator context."
+      },
+      {
+        "query": "Who uses Apple products and knows a startup founder?",
+        "expected": [
+          "Riya",
+          "Aarav"
+        ],
+        "reasoning_path": "Riya (iPhone) → works with → Aarav (founder)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who is connected to Pune through psychology?",
+        "expected": [
+          "Meera"
+        ],
+        "reasoning_path": "Meera → lives in Pune, studies psychology",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who knows a data analyst?",
+        "expected": [
+          "Vikram",
+          "Aarav",
+          "Abhishek",
+          "I"
+        ],
+        "reasoning_path": "Connected to Karan (data analyst)",
+        "passed": false,
+        "judge_reason": "Only mentions Aarav; lacks Vikram, Abhishek, and I."
+      },
+      {
+        "query": "Who works with someone who uses Power BI?",
+        "expected": [
+          "Aarav",
+          "Karan"
+        ],
+        "reasoning_path": "Aarav → consults with → Karan (Power BI)",
+        "passed": true,
+        "judge_reason": "Karan is mentioned as using Power BI, matching the expected info."
+      },
+      {
+        "query": "Who is connected to open-source contributors?",
+        "expected": [
+          "Riya",
+          "Aria"
+        ],
+        "reasoning_path": "Connected to Abhishek (open-source)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who has connections in Mumbai tech scene?",
+        "expected": [
+          "Aarav",
+          "TechNova",
+          "Riya"
+        ],
+        "reasoning_path": "Aarav (Mumbai), TechNova, Riya works with Aarav",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who knows someone who exercises regularly?",
+        "expected": [
+          "Karan",
+          "Riya",
+          "Aria"
+        ],
+        "reasoning_path": "Connected to Abhishek (exercises)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who is connected to digital immortality research?",
+        "expected": [
+          "Riya"
+        ],
+        "reasoning_path": "Connected to Abhishek (After Human project)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who knows a lo-fi music listener?",
+        "expected": [
+          "Aria",
+          "Karan",
+          "Riya"
+        ],
+        "reasoning_path": "Connected to Abhishek (lo-fi)",
+        "passed": false,
+        "judge_reason": "Does not mention any person who listens to lo-fi music."
+      },
+      {
+        "query": "Who works with someone from a consulting firm?",
+        "expected": [
+          "Aarav",
+          "Karan"
+        ],
+        "reasoning_path": "Karan (consulting firm) → consults → Aarav",
+        "passed": false,
+        "judge_reason": "Does not mention Aarav, Karan, or consulting firm."
+      },
+      {
+        "query": "Who is connected to art exhibition visitors?",
+        "expected": [
+          "Abhishek",
+          "I",
+          "Aria",
+          "Riya"
+        ],
+        "reasoning_path": "Aria and Riya met at art exhibition",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Find the chain from Karan to Singapore",
+        "expected": [
+          "Karan",
+          "Vikram",
+          "Singapore"
+        ],
+        "reasoning_path": "Karan → brother → Vikram → Singapore",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who is connected to the 2022 startup ecosystem?",
+        "expected": [
+          "Aarav",
+          "TechNova"
+        ],
+        "reasoning_path": "Aarav founded TechNova in 2022",
+        "passed": false,
+        "judge_reason": "Does not mention Aarav or TechNova in the startup ecosystem."
+      },
+      {
+        "query": "Who knows someone who values design empathy?",
+        "expected": [
+          "Aarav",
+          "Abhishek",
+          "I"
+        ],
+        "reasoning_path": "Connected to Riya (design empathy)",
+        "passed": false,
+        "judge_reason": "Does not mention Aarav, Abhishek, or I valuing design empathy."
+      },
+      {
+        "query": "Who is connected to Arch Linux users?",
+        "expected": [
+          "Riya",
+          "Aria",
+          "Karan"
+        ],
+        "reasoning_path": "Connected to Abhishek (Arch)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who has indirect connection to painting?",
+        "expected": [
+          "Riya",
+          "Abhishek",
+          "I"
+        ],
+        "reasoning_path": "Via Aria (painting)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who knows someone interested in distributed systems?",
+        "expected": [
+          "Riya",
+          "Karan",
+          "Aria"
+        ],
+        "reasoning_path": "Connected to Abhishek (system design)",
+        "passed": false,
+        "judge_reason": "Retrieved memories do not mention Riya, Karan, Aria or distributed systems."
+      },
+      {
+        "query": "Who is 2 hops from a psychologist?",
+        "expected": [
+          "Karan",
+          "Riya"
+        ],
+        "reasoning_path": "2 hops from Dr. Sharma via connections",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who is connected to coffee enthusiasts?",
+        "expected": [
+          "Riya",
+          "Karan",
+          "Aria"
+        ],
+        "reasoning_path": "Connected to Abhishek (black coffee)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Find connections to Sequoia Capital",
+        "expected": [
+          "Aarav",
+          "TechNova"
+        ],
+        "reasoning_path": "TechNova → raised from → Sequoia",
+        "passed": true,
+        "judge_reason": "Directly mentions TechNova and Sequoia Capital connection."
+      },
+      {
+        "query": "Who knows someone who graduated in 2023?",
+        "expected": [
+          "Karan",
+          "Riya",
+          "Aria"
+        ],
+        "reasoning_path": "Connected to Abhishek (2023 grad)",
+        "passed": false,
+        "judge_reason": "Retrieved memory does not mention Karan, Riya, or Aria."
+      },
+      {
+        "query": "Who has indirect connection to Delhi?",
+        "expected": [
+          "Abhishek",
+          "I",
+          "Vikram",
+          "Aarav"
+        ],
+        "reasoning_path": "Via Karan (Delhi)",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who is connected to someone with a quiet workspace preference?",
+        "expected": [
+          "Riya",
+          "Karan",
+          "Aria"
+        ],
+        "reasoning_path": "Connected to Abhishek/Meera (quiet)",
+        "passed": false,
+        "judge_reason": "No mention of Riya, Karan, or Aria; irrelevant to query."
+      },
+      {
+        "query": "Who knows a Y Combinator follower?",
+        "expected": [
+          "Riya",
+          "Karan",
+          "TechNova"
+        ],
+        "reasoning_path": "Connected to Aarav (Y Combinator)",
+        "passed": false,
+        "judge_reason": "Does not mention Riya, Karan, or TechNova as Y Combinator followers."
+      },
+      {
+        "query": "Who is connected to someone learning Rust?",
+        "expected": [
+          "Riya",
+          "Karan",
+          "Aria"
+        ],
+        "reasoning_path": "Connected to Abhishek (Rust)",
+        "passed": false,
+        "judge_reason": "Does not mention any names or connection to learning Rust."
+      },
+      {
+        "query": "Find the path from Abhishek to Sequoia",
+        "expected": [
+          "Abhishek",
+          "Riya",
+          "Aarav",
+          "TechNova",
+          "Sequoia"
+        ],
+        "reasoning_path": "Abhishek → Riya → Aarav → TechNova → Sequoia",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      },
+      {
+        "query": "Who has 3-hop connection to Dr. Sharma?",
+        "expected": [
+          "Abhishek",
+          "I",
+          "Riya"
+        ],
+        "reasoning_path": "Via Abhishek → someone → Meera → Dr. Sharma",
+        "passed": false,
+        "judge_reason": "No memories retrieved"
+      }
+    ]
+  },
+  "consistency": {
+    "passed": 21,
+    "total": 50,
+    "details": [
+      {
+        "queries": [
+          "What does Abhishek like?",
+          "Tell me about Abhishek's preferences",
+          "What are Abhishek's likes?"
+        ],
+        "expected_consistent": [
+          "black",
+          "dark"
+        ],
+        "responses_count": 3,
+        "passed": false
+      },
+      {
+        "queries": [
+          "Where does Riya live?",
+          "What city is Riya from?",
+          "Riya's location?"
+        ],
+        "expected_consistent": [
+          "Bangalore"
+        ],
+        "responses_count": 2,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What does Karan work as?",
+          "Karan's profession?",
+          "What is Karan's job?"
+        ],
+        "expected_consistent": [
+          "data analyst"
+        ],
+        "responses_count": 3,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What does Abhishek study?",
+          "Abhishek's field of study?",
+          "What is Abhishek studying?"
+        ],
+        "expected_consistent": [
+          "AI",
+          "Artificial Intelligence"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "Who is Abhishek's wife?",
+          "Abhishek's spouse?",
+          "Name of Abhishek's wife?"
+        ],
+        "expected_consistent": [
+          "Aria"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What OS does Abhishek use?",
+          "Abhishek's operating system?",
+          "What system does Abhishek prefer?"
+        ],
+        "expected_consistent": [
+          "Linux"
+        ],
+        "responses_count": 2,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What laptop does Aarav use?",
+          "Aarav's computer?",
+          "What device does Aarav work on?"
+        ],
+        "expected_consistent": [
+          "MacBook"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "Where is Karan from?",
+          "Karan's city?",
+          "Where does Karan live?"
+        ],
+        "expected_consistent": [
+          "Delhi"
+        ],
+        "responses_count": 2,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What does Meera study?",
+          "Meera's major?",
+          "What is Meera studying?"
+        ],
+        "expected_consistent": [
+          "Psychology"
+        ],
+        "responses_count": 2,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What sport does Karan play?",
+          "Karan's favorite sport?",
+          "What game does Karan like?"
+        ],
+        "expected_consistent": [
+          "football"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What phone does Riya use?",
+          "Riya's device?",
+          "What does Riya photograph with?"
+        ],
+        "expected_consistent": [
+          "iPhone"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "Who does Abhishek collaborate with?",
+          "Abhishek's collaborator?",
+          "Who works with Abhishek?"
+        ],
+        "expected_consistent": [
+          "Riya"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What is Aarav's company?",
+          "Aarav's startup name?",
+          "What did Aarav found?"
+        ],
+        "expected_consistent": [
+          "TechNova"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What coffee does Abhishek drink?",
+          "Abhishek's coffee preference?",
+          "How does Abhishek take his coffee?"
+        ],
+        "expected_consistent": [
+          "black"
+        ],
+        "responses_count": 1,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What editor does Abhishek use?",
+          "Abhishek's code editor?",
+          "What IDE does Abhishek prefer?"
+        ],
+        "expected_consistent": [
+          "VSCode"
+        ],
+        "responses_count": 2,
+        "passed": false
+      },
+      {
+        "queries": [
+          "Who is Meera's mentor?",
+          "Meera's guide?",
+          "Who mentors Meera?"
+        ],
+        "expected_consistent": [
+          "Sharma",
+          "Dr."
+        ],
+        "responses_count": 3,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What language is Abhishek learning?",
+          "New programming language for Abhishek?",
+          "What is Abhishek studying now?"
+        ],
+        "expected_consistent": [
+          "Rust"
+        ],
+        "responses_count": 1,
+        "passed": false
+      },
+      {
+        "queries": [
+          "Where did Vikram move?",
+          "Vikram's new location?",
+          "Where is Vikram now?"
+        ],
+        "expected_consistent": [
+          "Singapore"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What does Aria paint?",
+          "Aria's art style?",
+          "What does Aria create?"
+        ],
+        "expected_consistent": [
+          "landscape",
+          "watercolor"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "When did Abhishek graduate?",
+          "Abhishek's graduation year?",
+          "What year did Abhishek finish university?"
+        ],
+        "expected_consistent": [
+          "2023"
+        ],
+        "responses_count": 2,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What time does Abhishek sleep?",
+          "Abhishek's bedtime?",
+          "When does Abhishek go to sleep?"
+        ],
+        "expected_consistent": [
+          "2 AM",
+          "late"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What music does Abhishek listen to?",
+          "Abhishek's music preference?",
+          "What does Abhishek play while coding?"
+        ],
+        "expected_consistent": [
+          "lo-fi"
+        ],
+        "responses_count": 1,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What movies does Abhishek like?",
+          "Abhishek's movie genre?",
+          "What films does Abhishek prefer?"
+        ],
+        "expected_consistent": [
+          "sci-fi",
+          "science fiction"
+        ],
+        "responses_count": 2,
+        "passed": false
+      },
+      {
+        "queries": [
+          "How often does Abhishek exercise?",
+          "Abhishek's workout frequency?",
+          "When does Abhishek exercise?"
+        ],
+        "expected_consistent": [
+          "three times",
+          "week"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What does Karan support?",
+          "Karan's football team?",
+          "Which team does Karan follow?"
+        ],
+        "expected_consistent": [
+          "Manchester United"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "Who funded TechNova?",
+          "TechNova's investor?",
+          "Who invested in TechNova?"
+        ],
+        "expected_consistent": [
+          "Sequoia"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "When was TechNova founded?",
+          "TechNova's founding year?",
+          "What year did Aarav start TechNova?"
+        ],
+        "expected_consistent": [
+          "2022"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What does Karan know?",
+          "Karan's skills?",
+          "What tools does Karan use?"
+        ],
+        "expected_consistent": [
+          "SQL",
+          "Power BI"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What does Riya dislike?",
+          "Riya's pet peeves?",
+          "What annoys Riya?"
+        ],
+        "expected_consistent": [
+          "clutter"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What does Meera practice?",
+          "Meera's daily routine?",
+          "What meditation does Meera do?"
+        ],
+        "expected_consistent": [
+          "mindfulness"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What does Abhishek believe in?",
+          "Abhishek's philosophy?",
+          "What values does Abhishek hold?"
+        ],
+        "expected_consistent": [
+          "open-source"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What colors does Riya like?",
+          "Riya's color preference?",
+          "What palette does Riya prefer?"
+        ],
+        "expected_consistent": [
+          "pastel"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What project is Abhishek working on?",
+          "Abhishek's current project?",
+          "What is Abhishek building?"
+        ],
+        "expected_consistent": [
+          "After Human"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "Who is Karan's brother?",
+          "Karan's sibling?",
+          "What is Karan's brother's name?"
+        ],
+        "expected_consistent": [
+          "Vikram"
+        ],
+        "responses_count": 3,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What does Vikram work in?",
+          "Vikram's field?",
+          "What industry is Vikram in?"
+        ],
+        "expected_consistent": [
+          "finance"
+        ],
+        "responses_count": 3,
+        "passed": false
+      },
+      {
+        "queries": [
+          "How did Aria and Riya meet?",
+          "Where did Aria meet Riya?",
+          "Aria and Riya's meeting place?"
+        ],
+        "expected_consistent": [
+          "art exhibition"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What book did Dr. Sharma write?",
+          "Dr. Sharma's publication?",
+          "What did Dr. Sharma author?"
+        ],
+        "expected_consistent": [
+          "cognitive therapy"
+        ],
+        "responses_count": 1,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What does Abhishek avoid?",
+          "Abhishek's dislikes in tech?",
+          "What does Abhishek stay away from?"
+        ],
+        "expected_consistent": [
+          "vendor lock-in"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What accelerator does Aarav follow?",
+          "Aarav's startup accelerator?",
+          "What incubator does Aarav track?"
+        ],
+        "expected_consistent": [
+          "Y Combinator"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What does Karan prefer in data?",
+          "Karan's data preference?",
+          "What kind of data does Karan like?"
+        ],
+        "expected_consistent": [
+          "structured"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What environments does Abhishek dislike?",
+          "Abhishek's environmental preferences?",
+          "What places does Abhishek avoid?"
+        ],
+        "expected_consistent": [
+          "loud"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What does Meera read?",
+          "Meera's reading material?",
+          "What papers does Meera study?"
+        ],
+        "expected_consistent": [
+          "research papers"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What does Abhishek understand?",
+          "Abhishek's expertise?",
+          "What architecture does Abhishek know?"
+        ],
+        "expected_consistent": [
+          "system design",
+          "distributed"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "When did Riya join the startup?",
+          "Riya's joining year?",
+          "What year did Riya start working?"
+        ],
+        "expected_consistent": [
+          "2024"
+        ],
+        "responses_count": 3,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What places does Meera prefer?",
+          "Meera's study spots?",
+          "Where does Meera like to study?"
+        ],
+        "expected_consistent": [
+          "quiet café"
+        ],
+        "responses_count": 3,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What does Abhishek read?",
+          "Abhishek's reading interests?",
+          "What books does Abhishek enjoy?"
+        ],
+        "expected_consistent": [
+          "philosophy",
+          "technology"
+        ],
+        "responses_count": 0,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What work style does Aarav prefer?",
+          "Aarav's work preference?",
+          "How does Aarav like to work?"
+        ],
+        "expected_consistent": [
+          "remote"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What design principle does Riya believe in?",
+          "Riya's design philosophy?",
+          "What approach does Riya follow?"
+        ],
+        "expected_consistent": [
+          "empathy",
+          "users first"
+        ],
+        "responses_count": 3,
+        "passed": true
+      },
+      {
+        "queries": [
+          "What did Abhishek complete last week?",
+          "Abhishek's recent work?",
+          "What was finished last week?"
+        ],
+        "expected_consistent": [
+          "architecture",
+          "memory system"
+        ],
+        "responses_count": 2,
+        "passed": false
+      },
+      {
+        "queries": [
+          "What does Meera dislike about technology?",
+          "Meera's tech concerns?",
+          "What screen habits does Meera avoid?"
+        ],
+        "expected_consistent": [
+          "social media",
+          "overload"
+        ],
+        "responses_count": 3,
+        "passed": true
+      }
+    ]
+  },
+  "robustness": {
+    "passed": 49,
+    "total": 50,
+    "details": [
+      {
+        "query": "What car does Abhishek drive?",
+        "should_find": false,
+        "reason": "No car info stored",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "What is Riya's favorite food?",
+        "should_find": false,
+        "reason": "No food preference stored",
+        "found_count": 4,
+        "top_score": 0.4336956360346441,
+        "passed": true
+      },
+      {
+        "query": "Does Karan play cricket?",
+        "should_find": false,
+        "reason": "Only football is mentioned",
+        "found_count": 5,
+        "top_score": 0.4250042375562265,
+        "passed": true
+      },
+      {
+        "query": "Where does Abhishek live?",
+        "should_find": false,
+        "reason": "Location not stored for Abhishek",
+        "found_count": 1,
+        "top_score": 0.4128546395372646,
+        "passed": true
+      },
+      {
+        "query": "Who is the CEO of After Human?",
+        "should_find": false,
+        "reason": "No CEO info stored",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "What is Abhishek's salary?",
+        "should_find": false,
+        "reason": "No salary information stored",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "Does Riya have pets?",
+        "should_find": false,
+        "reason": "No pet information stored",
+        "found_count": 8,
+        "top_score": 0.46538852902401184,
+        "passed": true
+      },
+      {
+        "query": "What is Karan's phone number?",
+        "should_find": false,
+        "reason": "No phone numbers stored",
+        "found_count": 6,
+        "top_score": 0.42985434085497876,
+        "passed": true
+      },
+      {
+        "query": "Does Meera have siblings?",
+        "should_find": false,
+        "reason": "No sibling info for Meera",
+        "found_count": 1,
+        "top_score": 0.40327241939587677,
+        "passed": true
+      },
+      {
+        "query": "What is Aarav's net worth?",
+        "should_find": false,
+        "reason": "No financial details stored",
+        "found_count": 10,
+        "top_score": 0.46532783627814556,
+        "passed": true
+      },
+      {
+        "query": "Does Abhishek play any instrument?",
+        "should_find": false,
+        "reason": "No music instrument info",
+        "found_count": 1,
+        "top_score": 0.40226564856015684,
+        "passed": true
+      },
+      {
+        "query": "What is Riya's height?",
+        "should_find": false,
+        "reason": "No physical attributes stored",
+        "found_count": 5,
+        "top_score": 0.4158218483147789,
+        "passed": true
+      },
+      {
+        "query": "Does Karan have children?",
+        "should_find": false,
+        "reason": "No children info stored",
+        "found_count": 7,
+        "top_score": 0.43828541326094095,
+        "passed": true
+      },
+      {
+        "query": "What is Meera's blood type?",
+        "should_find": false,
+        "reason": "No medical info stored",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "Where did Aarav go to college?",
+        "should_find": false,
+        "reason": "No education details for Aarav",
+        "found_count": 6,
+        "top_score": 0.4591710142655738,
+        "passed": true
+      },
+      {
+        "query": "Does Abhishek smoke?",
+        "should_find": false,
+        "reason": "No lifestyle habits like smoking",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "What is Riya's favorite restaurant?",
+        "should_find": false,
+        "reason": "No restaurant preferences",
+        "found_count": 5,
+        "top_score": 0.4352043881849459,
+        "passed": true
+      },
+      {
+        "query": "Does Karan own a house?",
+        "should_find": false,
+        "reason": "No property info stored",
+        "found_count": 6,
+        "top_score": 0.43289799847129634,
+        "passed": true
+      },
+      {
+        "query": "What is Meera's email address?",
+        "should_find": false,
+        "reason": "No contact info stored",
+        "found_count": 2,
+        "top_score": 0.41362559119626596,
+        "passed": true
+      },
+      {
+        "query": "Does Aarav have a co-founder?",
+        "should_find": false,
+        "reason": "No co-founder mentioned",
+        "found_count": 10,
+        "top_score": 0.5133973130029066,
+        "passed": false
+      },
+      {
+        "query": "What is Abhishek's Twitter handle?",
+        "should_find": false,
+        "reason": "No social media handles stored",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "Does Riya know JavaScript?",
+        "should_find": false,
+        "reason": "No programming skills for Riya",
+        "found_count": 9,
+        "top_score": 0.4464767914567227,
+        "passed": true
+      },
+      {
+        "query": "What bank does Karan use?",
+        "should_find": false,
+        "reason": "No banking info stored",
+        "found_count": 8,
+        "top_score": 0.45992254790063825,
+        "passed": true
+      },
+      {
+        "query": "Does Meera have a boyfriend?",
+        "should_find": false,
+        "reason": "No relationship status for Meera",
+        "found_count": 3,
+        "top_score": 0.4165719383279476,
+        "passed": true
+      },
+      {
+        "query": "What is Aarav's middle name?",
+        "should_find": false,
+        "reason": "No full name details stored",
+        "found_count": 10,
+        "top_score": 0.46967163591361727,
+        "passed": true
+      },
+      {
+        "query": "Does Abhishek own cryptocurrency?",
+        "should_find": false,
+        "reason": "No crypto info stored",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "What insurance does Riya have?",
+        "should_find": false,
+        "reason": "No insurance info stored",
+        "found_count": 5,
+        "top_score": 0.41785732676058357,
+        "passed": true
+      },
+      {
+        "query": "Does Karan travel abroad frequently?",
+        "should_find": false,
+        "reason": "No travel info for Karan",
+        "found_count": 4,
+        "top_score": 0.42567391684055167,
+        "passed": true
+      },
+      {
+        "query": "What is Meera's GPA?",
+        "should_find": false,
+        "reason": "No academic scores stored",
+        "found_count": 3,
+        "top_score": 0.42131463162447336,
+        "passed": true
+      },
+      {
+        "query": "Does Aarav have investors other than Sequoia?",
+        "should_find": false,
+        "reason": "Only Sequoia mentioned",
+        "found_count": 8,
+        "top_score": 0.48395640463789,
+        "passed": true
+      },
+      {
+        "query": "What is Abhishek's shoe size?",
+        "should_find": false,
+        "reason": "No physical measurements stored",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "Does Riya speak French?",
+        "should_find": false,
+        "reason": "No language skills stored for Riya",
+        "found_count": 3,
+        "top_score": 0.41265187017835653,
+        "passed": true
+      },
+      {
+        "query": "What is Karan's favorite movie?",
+        "should_find": false,
+        "reason": "No movie preference for Karan",
+        "found_count": 2,
+        "top_score": 0.4129060776411629,
+        "passed": true
+      },
+      {
+        "query": "Does Meera cook?",
+        "should_find": false,
+        "reason": "No cooking info stored",
+        "found_count": 2,
+        "top_score": 0.4033786538711025,
+        "passed": true
+      },
+      {
+        "query": "What is Aarav's birthday?",
+        "should_find": false,
+        "reason": "No birth dates stored",
+        "found_count": 7,
+        "top_score": 0.447476973579093,
+        "passed": true
+      },
+      {
+        "query": "Does Abhishek have tattoos?",
+        "should_find": false,
+        "reason": "No body modifications info",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "What gym does Riya go to?",
+        "should_find": false,
+        "reason": "No gym info for Riya",
+        "found_count": 3,
+        "top_score": 0.4083199679261009,
+        "passed": true
+      },
+      {
+        "query": "Does Karan drive a Tesla?",
+        "should_find": false,
+        "reason": "No vehicle info stored",
+        "found_count": 4,
+        "top_score": 0.4158639622680356,
+        "passed": true
+      },
+      {
+        "query": "What medication does Meera take?",
+        "should_find": false,
+        "reason": "No medical info stored",
+        "found_count": 1,
+        "top_score": 0.4096419664570732,
+        "passed": true
+      },
+      {
+        "query": "Does Aarav have an MBA?",
+        "should_find": false,
+        "reason": "No education details for Aarav",
+        "found_count": 9,
+        "top_score": 0.4914810213831845,
+        "passed": true
+      },
+      {
+        "query": "What is Abhishek's zodiac sign?",
+        "should_find": false,
+        "reason": "No astrology info stored",
+        "found_count": 0,
+        "top_score": 0,
+        "passed": true
+      },
+      {
+        "query": "Does Riya have allergies?",
+        "should_find": false,
+        "reason": "No health info stored for Riya",
+        "found_count": 4,
+        "top_score": 0.404339452483102,
+        "passed": true
+      },
+      {
+        "query": "What is Karan's favorite book?",
+        "should_find": false,
+        "reason": "No book preference for Karan",
+        "found_count": 2,
+        "top_score": 0.4146681498752135,
+        "passed": true
+      },
+      {
+        "query": "Does Meera play any sports?",
+        "should_find": false,
+        "reason": "No sports info for Meera",
+        "found_count": 3,
+        "top_score": 0.40511001672263736,
+        "passed": true
+      },
+      {
+        "query": "What is Aarav's LinkedIn URL?",
+        "should_find": false,
+        "reason": "No URLs stored",
+        "found_count": 10,
+        "top_score": 0.4799586795947912,
+        "passed": true
+      },
+      {
+        "query": "Does Abhishek have a PhD?",
+        "should_find": false,
+        "reason": "No PhD mentioned",
+        "found_count": 1,
+        "top_score": 0.4221421025302666,
+        "passed": true
+      },
+      {
+        "query": "What airline does Riya prefer?",
+        "should_find": false,
+        "reason": "No travel preferences stored",
+        "found_count": 9,
+        "top_score": 0.4618556207819291,
+        "passed": true
+      },
+      {
+        "query": "Does Karan gamble?",
+        "should_find": false,
+        "reason": "No gambling info stored",
+        "found_count": 5,
+        "top_score": 0.41259283223799836,
+        "passed": true
+      },
+      {
+        "query": "What is Meera's favorite color?",
+        "should_find": false,
+        "reason": "No color preference for Meera",
+        "found_count": 2,
+        "top_score": 0.43693065605600195,
+        "passed": true
+      },
+      {
+        "query": "Does Aarav have a yacht?",
+        "should_find": false,
+        "reason": "No luxury items stored",
+        "found_count": 9,
+        "top_score": 0.47803546230090677,
+        "passed": true
+      }
+    ]
+  }
+}
