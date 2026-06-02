@@ -9,7 +9,6 @@
     <img src="https://img.shields.io/badge/Storage-SQLite%20%7C%20FAISS-orange?logo=sqlite&logoColor=white" alt="Storage"/>
     <img src="https://img.shields.io/badge/Embeddings-BGE--M3-purple?logo=huggingface&logoColor=white" alt="Embeddings"/>
     <img src="https://img.shields.io/badge/ASR-NeMo%200.6B-red?logo=nvidia&logoColor=white" alt="ASR"/>
-    <img src="https://img.shields.io/badge/License-Private-lightgrey" alt="License"/>
   </p>
 </p>
 
